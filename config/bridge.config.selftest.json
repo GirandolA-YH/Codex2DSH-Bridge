@@ -1,0 +1,52 @@
+{
+  "_comment": [
+    "Offline self-test configuration: the runner is the fixed fake child process.",
+    "It is never used to start a real model task. Paths are relative to this file's directory,",
+    "Use node tools/setup-selftest.mjs to generate the runnable local config with an absolute Node path.",
+    "The template command placeholders below must be replaced before direct use."
+  ],
+  "server": { "name": "dsh-codex-bridge", "version": "0.1.0", "logLevel": "info" },
+  "stateDir": "../state",
+  "taskFileRoots": ["../sandbox/tasks"],
+  "workspaces": {
+    "impl": { "dir": "../sandbox/impl", "allowedModes": ["implement", "fix"] },
+    "audit": {
+      "dir": "../sandbox/audit-snapshot",
+      "allowedModes": ["audit"],
+      "audit": { "sourceWorkspaceId": "impl", "reportDir": "../sandbox/audit-reports" }
+    }
+  },
+  "runner": {
+    "type": "fake",
+    "fake": {
+      "command": "REPLACE_WITH_ABSOLUTE_NODE_EXECUTABLE",
+      "argsPrefix": ["../fixtures/fake-runner.mjs"],
+      "extraArgs": [],
+      "env": {}
+    },
+    "production": {
+      "command": "REPLACE_WITH_ABSOLUTE_NODE_EXECUTABLE",
+      "argsPrefix": ["../fixtures/fake-runner.mjs"],
+      "profile": "headless",
+      "taskTransport": "argv",
+      "jsonEvents": false,
+      "extraArgs": [],
+      "env": {}
+    }
+  },
+  "limits": {
+    "defaultTimeoutSeconds": 30,
+    "minTimeoutSeconds": 1,
+    "maxTimeoutSeconds": 300,
+    "perStreamCaptureCapBytes": 5242880,
+    "resultPageMaxBytes": 65536,
+    "inlineTaskMaxChars": 16384,
+    "maxTaskFileBytes": 1048576
+  },
+  "concurrency": { "maxActiveJobs": 1 },
+  "recovery": { "killOrphanedChildrenOnStart": false },
+  "cleanup": { "confirmTimeoutMs": 2500, "killTimeoutMs": 5000 },
+  "ownership": { "staleHeartbeatMs": 30000, "heartbeatMs": 1000 },
+  "audit": { "maxSnapshotBytes": 536870912, "maxSnapshotFiles": 20000 },
+  "redaction": { "extraSecretEnv": [], "extraLiteralSecrets": [] }
+}

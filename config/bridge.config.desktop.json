@@ -1,0 +1,76 @@
+{
+  "_comment": [
+    "Variant that targets the DSH the desktop app actually runs (0.2.0-rc.2, bundled inside resources/app.asar).",
+    "The asar path is not a real file on disk, so the launcher runs the Electron binary with ELECTRON_RUN_AS_NODE=1,",
+    "exactly like resources/runtime/cli/bin/dsh.cmd does. This variant may also use taskTransport=stdin and jsonEvents=true,",
+    "because 0.2.0-rc.2 supports `-` (task on stdin) and `--json`; the stale 0.1.0-rc.x npm CLI supports neither.",
+    "Nothing here is written to Codex's own config automatically."
+  ],
+  "server": { "name": "dsh-codex-bridge", "version": "0.1.0", "logLevel": "info" },
+  "stateDir": "C:\\Projects\\Codex2DSH-Bridge\\state",
+  "taskFileRoots": ["C:\\Projects\\Codex2DSH-Bridge\\pilot\\tasks"],
+  "workspaces": {
+    "impl-pilot": {
+      "dir": "C:\\Projects\\Codex2DSH-Bridge\\pilot\\impl",
+      "allowedModes": ["implement", "fix"]
+    },
+    "audit-pilot": {
+      "dir": "C:\\Projects\\Codex2DSH-Bridge\\pilot\\audit-snapshot",
+      "allowedModes": ["audit"],
+      "audit": {
+        "sourceWorkspaceId": "impl-pilot",
+        "reportDir": "C:\\Projects\\Codex2DSH-Bridge\\pilot\\audit-reports"
+      }
+    }
+  },
+  "runner": {
+    "type": "production",
+    "production": {
+      "command": "C:\\Users\\YOUR_USER\\AppData\\Local\\Programs\\DeepSeek Harness\\DeepSeek Harness.exe",
+      "argsPrefix": [
+        "--expose-internals",
+        "C:\\Users\\YOUR_USER\\AppData\\Local\\Programs\\DeepSeek Harness\\resources\\app.asar\\dsh\\node_modules\\@deepseek-ai\\dsh\\lib\\bin.js"
+      ],
+      "profile": "headless",
+      "dshHome": null,
+      "taskTransport": "argv",
+      "jsonEvents": false,
+      "extraArgs": [],
+      "env": { "ELECTRON_RUN_AS_NODE": "1" },
+      "declaredDshVersion": "0.2.0-rc.2"
+    },
+    "fake": {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "argsPrefix": ["C:\\Projects\\Codex2DSH-Bridge\\fixtures\\fake-runner.mjs"],
+      "extraArgs": [],
+      "env": {}
+    }
+  },
+  "limits": {
+    "defaultTimeoutSeconds": 1800,
+    "minTimeoutSeconds": 1,
+    "maxTimeoutSeconds": 3600,
+    "perStreamCaptureCapBytes": 5242880,
+    "resultPageMaxBytes": 65536,
+    "inlineTaskMaxChars": 16384,
+    "maxTaskFileBytes": 1048576
+  },
+  "concurrency": { "maxActiveJobs": 1 },
+  "recovery": { "killOrphanedChildrenOnStart": false },
+  "cleanup": { "confirmTimeoutMs": 3000, "killTimeoutMs": 5000 },
+  "ownership": { "staleHeartbeatMs": 30000, "heartbeatMs": 5000 },
+  "audit": {
+    "include": [],
+    "exclude": [
+      "node_modules", ".git", "state", "dist", "coverage", "tmp", ".tmp", ".cache", "logs",
+      "*.log", ".env", ".env.*", "**/.env", "**/.env.*",
+      "**/.dsh/**", "**/sessions/**", "**/reports/**", "**/audit-reports/**", "**/audit/**",
+      "**/CODEX-AUDIT-*.md", "**/*AUDIT*.md",
+      "**/bridge.config.json", "**/*.real.json", "**/auth.json", "**/.credentials*",
+      "**/*credential*", "**/*secret*", "**/*.pem", "**/*.key", "**/*.pfx", "**/*.p12", "**/*id_rsa*"
+    ],
+    "maxSnapshotBytes": 536870912,
+    "maxSnapshotFiles": 20000
+  },
+  "redaction": { "extraSecretEnv": ["DEEPSEEK_API_KEY", "OPENAI_API_KEY"], "extraLiteralSecrets": [] }
+}

@@ -1,0 +1,2063 @@
+{
+  "schema": "dsh-codex-bridge/test-results/v1",
+  "generatedAt": "2026-10-11T02:34:46.743Z",
+  "runStartedAt": "10/11/2026 02:31:00",
+  "runDurationMs": 153089,
+  "command": "node tools/run-tests.mjs",
+  "exitCode": 0,
+  "environment": {
+    "node": "v24.19.0",
+    "platform": "win32",
+    "arch": "x64",
+    "osRelease": "10.0.26300",
+    "powershell": "7.6.6",
+    "cwd": "<publication-checkout>"
+  },
+  "summary": {
+    "total": 179,
+    "passed": 179,
+    "failed": 0,
+    "skipped": 0,
+    "simulated": 164,
+    "realModelCalls": 0
+  },
+  "notes": [
+    "Every simulated test uses fixtures/fake-runner.mjs: no real model call, no real DSH headless run and no Codex integration took place.",
+    "The real MCP protocol round trip and the raw-stdio framing check speak the real MCP protocol over real stdio child processes; only the DSH child is simulated.",
+    "The A01 checks read installed DSH package metadata and parse the desktop app.asar read-only.",
+    "Fresh publication checkout; full native Windows offline run. Dependencies reused from the existing matching lockfile; no npm download. No DSH/model calls."
+  ],
+  "tests": [
+    {
+      "name": "A08 path containment rejects traversal, prefix confusion and reparse escapes",
+      "file": "test/00-units.test.mjs",
+      "acceptanceItems": [
+        "A08"
+      ],
+      "result": "passed",
+      "command": "node tools/run-tests.mjs",
+      "durationMs": 10,
+      "mocked": false,
+      "mockedScope": "pure in-process functions; no subprocess, no model call",
+      "failureMessage": null
+    },
+    {
+      "name": "A13 redaction removes keys, bearer tokens, assignments and configured literals",
+      "file": "test/00-units.test.mjs",
+      "acceptanceItems": [
+        "A13"
+      ],
+      "result": "passed",
+      "command": "node tools/run-tests.mjs",
+      "durationMs": 1,
+      "mocked": false,
+      "mockedScope": "pure in-process functions; no subprocess, no model call",
+      "failureMessage": null
+    },
+    {
+      "name": "manifests are deterministic and diffs classify change/add/remove",
+      "file": "test/00-units.test.mjs",
+      "acceptanceItems": [],
+      "result": "passed",
+      "command": "node tools/run-tests.mjs",
+      "durationMs": 11,
+      "mocked": false,
+      "mockedScope": "pure in-process functions; no subprocess, no model call",
+      "failureMessage": null
+    },
+    {
+      "name": "A12 capture caps stored bytes, keeps draining and paginates by characters",
+      "file": "test/00-units.test.mjs",
+      "acceptanceItems": [
+        "A12"
+      ],
+      "result": "passed",
+      "command": "node tools/run-tests.mjs",
+      "durationMs": 16,
+      "mocked": false,
+      "mockedScope": "pure in-process functions; no subprocess, no model call",
+      "failureMessage": null
+    },
+    {
+      "name": "config validation rejects unsafe or unsupported shapes",
+      "file": "test/00-units.test.mjs",
+      "acceptanceItems": [],
+      "result": "passed",
+      "command": "node tools/run-tests.mjs",
+      "durationMs": 16,
+      "mocked": false,
+      "mockedScope": "pure in-process functions; no subprocess, no model call",
+      "failureMessage": null
+    },
+    {
+      "name": "A01 two DSH installations exist and their headless surfaces differ",
+      "file": "test/01-protocol-and-environment.test.mjs",
+      "acceptanceItems": [
+        "A01"
+      ],
+      "result": "passed",
+      "command": "node tools/run-tests.mjs",
+      "durationMs": 320,
+      "mocked": false,
+      "mockedScope": "read-only inspection of installed DSH files and the app.asar archive; no process started, no model call",
+      "failureMessage": null
+    },
+    {
+      "name": "A01 the production launcher is inspected without being executed",
+      "file": "test/01-protocol-and-environment.test.mjs",
+      "acceptanceItems": [
+        "A01"
+      ],
+      "result": "passed",
+      "command": "node tools/run-tests.mjs",
+      "durationMs": 524,
+      "mocked": false,
+      "mockedScope": "read-only inspection of installed DSH files and the app.asar archive; no process started, no model call",
+      "failureMessage": null
+    },
+    {
+      "name": "A02 real MCP protocol round trip over stdio",
+      "file": "test/01-protocol-and-environment.test.mjs",
+      "acceptanceItems": [
+        "A02"
+      ],
+      "result": "passed",
+      "command": "node tools/run-tests.mjs",
+      "durationMs": 1097,
+      "mocked": true,
+      "mockedScope": "fake child process (fixtures/fake-runner.mjs): success, failure, timeout, cancellation, descendants, large output and secret fixtures — no model call and no real DSH run",
+      "failureMessage": null
+    },
+    {
+      "name": "A02 raw stdio stream carries only JSON-RPC frames end to end",
+      "file": "test/01-protocol-and-environment.test.mjs",
+      "acceptanceItems": [
+        "A02"
+      ],
+      "result": "passed",
+      "command": "node tools/run-tests.mjs",
+      "durationMs": 513,
+      "mocked": false,
+      "mockedScope": "real MCP protocol over stdio with a live bridge process; the DSH child is the fake runner — no model call",
+      "failureMessage": null
+    },
+    {
+      "name": "A03 submit returns a jobId within two seconds and status is readable while running",
+      "file": "test/02-lifecycle.test.mjs",
+      "acceptanceItems": [
+        "A03"
+      ],
+      "result": "passed",
+      "command": "node tools/run-tests.mjs",
+      "durationMs": 2747,
+      "mocked": true,
+      "mockedScope": "fake child process (fixtures/fake-runner.mjs): success, failure, timeout, cancellation, descendants, large output and secret fixtures — no model call and no real DSH run",
+      "failureMessage": null
+    },
+    {
+      "name": "A04 exit code maps to completed/failed and never to an acceptance verdict",
+      "file": "test/02-lifecycle.test.mjs",
+      "acceptanceItems": [
+        "A04"
+      ],
+      "result": "passed",
+      "command": "node tools/run-tests.mjs",
+      "durationMs": 833,
+      "mocked": true,
+      "mockedScope": "fake child process (fixtures/fake-runner.mjs): success, failure, timeout, cancellation, descendants, large output and secret fixtures — no model call and no real DSH run",
+      "failureMessage": null
+    },
+    {
+      "name": "A05 quotes, newlines, backticks and $( ) reach the child as data",
+      "file": "test/02-lifecycle.test.mjs",
+      "acceptanceItems": [
+        "A05"
+      ],
+      "result": "passed",
+      "command": "node tools/run-tests.mjs",
+      "durationMs": 701,
+      "mocked": true,
+      "mockedScope": "fake child process (fixtures/fake-runner.mjs): success, failure, timeout, cancellation, descendants, large output and secret fixtures — no model call and no real DSH run",
+      "failureMessage": null
+    },
+    {
+      "name": "A06 the accepted copy is frozen and hashed; later edits cannot change it",
+      "file": "test/02-lifecycle.test.mjs",
+      "acceptanceItems": [
+        "A06"
+      ],
+      "result": "passed",
+      "command": "node tools/run-tests.mjs",
+      "durationMs": 688,
+      "mocked": true,
+      "mockedScope": "fake child process (fixtures/fake-runner.mjs): success, failure, timeout, cancellation, descendants, large output and secret fixtures — no model call and no real DSH run",
+      "failureMessage": null
+    },
+    {
+      "name": "A06 large tasks switch to pointer handoff and the child still gets the frozen copy",
+      "file": "test/02-lifecycle.test.mjs",
+      "acceptanceItems": [
+        "A06"
+      ],
+      "result": "passed",
+      "command": "node tools/run-tests.mjs",
+      "durationMs": 808,
+      "mocked": true,
+      "mockedScope": "fake child process (fixtures/fake-runner.mjs): success, failure, timeout, cancellation, descendants, large output and secret fixtures — no model call and no real DSH run",
+      "failureMessage": null
+    },
+    {
+      "name": "A07 invalid arguments return stable codes and never start a job",
+      "file": "test/03-validation-and-paths.test.mjs",
+      "acceptanceItems": [
+        "A07"
+      ],
+      "result": "passed",
+      "command": "node tools/run-tests.mjs",
+      "durationMs": 571,
+      "mocked": true,
+      "mockedScope": "fake child process (fixtures/fake-runner.mjs): success, failure, timeout, cancellation, descendants, large output and secret fixtures — no model call and no real DSH run",
+      "failureMessage": null
+    },
+    {
+      "name": "A08 task files outside the allowed roots are rejected without starting a process",
+      "file": "test/03-validation-and-paths.test.mjs",
+      "acceptanceItems": [
+        "A08"
+      ],
+      "result": "passed",
+      "command": "node tools/run-tests.mjs",
+      "durationMs": 665,
+      "mocked": true,
+      "mockedScope": "fake child process (fixtures/fake-runner.mjs): success, failure, timeout, cancellation, descendants, large output and secret fixtures — no model call and no real DSH run",
+      "failureMessage": null
+    },
+    {
+      "name": "A09 same requestId is idempotent, different content conflicts, other work is BUSY",
+      "file": "test/04-concurrency-cancel-timeout.test.mjs",
+      "acceptanceItems": [
+        "A09"
+      ],
+      "result": "passed",
+      "command": "node tools/run-tests.mjs",
+      "durationMs": 3347,
+      "mocked": true,
+      "mockedScope": "fake child process (fixtures/fake-runner.mjs): success, failure, timeout, cancellation, descendants, large output and secret fixtures — no model call and no real DSH run",
+      "failureMessage": null
+    },
+    {
+      "name": "A10 cancel stops the fake job and its descendant but not unrelated processes",
+      "file": "test/04-concurrency-cancel-timeout.test.mjs",
+      "acceptanceItems": [
+        "A10"
+      ],
+      "result": "passed",
+      "command": "node tools/run-tests.mjs",
+      "durationMs": 3587,
+      "mocked": true,
+      "mockedScope": "fake child process (fixtures/fake-runner.mjs): success, failure, timeout, cancellation, descendants, large output and secret fixtures — no model call and no real DSH run",
+      "failureMessage": null
+    },
+    {
+      "name": "A11 timeout terminates the tree and cancel/exit races settle on one stable state",
+      "file": "test/04-concurrency-cancel-timeout.test.mjs",
+      "acceptanceItems": [
+        "A11"
+      ],
+      "result": "passed",
+      "command": "node tools/run-tests.mjs",
+      "durationMs": 5150,
+      "mocked": true,
+      "mockedScope": "fake child process (fixtures/fake-runner.mjs): success, failure, timeout, cancellation, descendants, large output and secret fixtures — no model call and no real DSH run",
+      "failureMessage": null
+    },
+    {
+      "name": "A12 oversized output is capped, drained and paginated without stalling",
+      "file": "test/05-output-and-secrets.test.mjs",
+      "acceptanceItems": [
+        "A12"
+      ],
+      "result": "passed",
+      "command": "node tools/run-tests.mjs",
+      "durationMs": 1551,
+      "mocked": true,
+      "mockedScope": "fake child process (fixtures/fake-runner.mjs): success, failure, timeout, cancellation, descendants, large output and secret fixtures — no model call and no real DSH run",
+      "failureMessage": null
+    },
+    {
+      "name": "A13 fake credentials never reach results, logs, job records or diagnostics",
+      "file": "test/05-output-and-secrets.test.mjs",
+      "acceptanceItems": [
+        "A13"
+      ],
+      "result": "passed",
+      "command": "node tools/run-tests.mjs",
+      "durationMs": 825,
+      "mocked": true,
+      "mockedScope": "fake child process (fixtures/fake-runner.mjs): success, failure, timeout, cancellation, descendants, large output and secret fixtures — no model call and no real DSH run",
+      "failureMessage": null
+    },
+    {
+      "name": "A14 normal disconnect cancels the owned job and leaves no live child",
+      "file": "test/06-restart-and-startup-failure.test.mjs",
+      "acceptanceItems": [
+        "A14"
+      ],
+      "result": "passed",
+      "command": "node tools/run-tests.mjs",
+      "durationMs": 1990,
+      "mocked": true,
+      "mockedScope": "fake child process (fixtures/fake-runner.mjs): success, failure, timeout, cancellation, descendants, large output and secret fixtures — no model call and no real DSH run",
+      "failureMessage": null
+    },
+    {
+      "name": "A14 abrupt death marks the job interrupted on restart without re-running it",
+      "file": "test/06-restart-and-startup-failure.test.mjs",
+      "acceptanceItems": [
+        "A14"
+      ],
+      "result": "passed",
+      "command": "node tools/run-tests.mjs",
+      "durationMs": 2865,
+      "mocked": true,
+      "mockedScope": "fake child process (fixtures/fake-runner.mjs): success, failure, timeout, cancellation, descendants, large output and secret fixtures — no model call and no real DSH run",
+      "failureMessage": null
+    },
+    {
+      "name": "A14 orphan recovery terminates only a proved child identity and otherwise only blocks",
+      "file": "test/06-restart-and-startup-failure.test.mjs",
+      "acceptanceItems": [
+        "A14"
+      ],
+      "result": "passed",
+      "command": "node tools/run-tests.mjs",
+      "durationMs": 8447,
+      "mocked": true,
+      "mockedScope": "fake child process (fixtures/fake-runner.mjs): success, failure, timeout, cancellation, descendants, large output and secret fixtures — no model call and no real DSH run",
+      "failureMessage": null
+    },
+    {
+      "name": "A15 an unavailable runner is diagnosed and jobs never stay in starting",
+      "file": "test/06-restart-and-startup-failure.test.mjs",
+      "acceptanceItems": [
+        "A15"
+      ],
+      "result": "passed",
+      "command": "node tools/run-tests.mjs",
+      "durationMs": 535,
+      "mocked": true,
+      "mockedScope": "fake child process (fixtures/fake-runner.mjs): success, failure, timeout, cancellation, descendants, large output and secret fixtures — no model call and no real DSH run",
+      "failureMessage": null
+    },
+    {
+      "name": "A15 an unreadable DSH launch target is diagnosed without executing it",
+      "file": "test/06-restart-and-startup-failure.test.mjs",
+      "acceptanceItems": [
+        "A15"
+      ],
+      "result": "passed",
+      "command": "node tools/run-tests.mjs",
+      "durationMs": 500,
+      "mocked": true,
+      "mockedScope": "fake child process (fixtures/fake-runner.mjs): success, failure, timeout, cancellation, descendants, large output and secret fixtures — no model call and no real DSH run",
+      "failureMessage": null
+    },
+    {
+      "name": "A16 audit mode refuses an implementation workspace and runs in a fresh snapshot",
+      "file": "test/07-audit.test.mjs",
+      "acceptanceItems": [
+        "A16"
+      ],
+      "result": "passed",
+      "command": "node tools/run-tests.mjs",
+      "durationMs": 1159,
+      "mocked": true,
+      "mockedScope": "fake child process (fixtures/fake-runner.mjs): success, failure, timeout, cancellation, descendants, large output and secret fixtures — no model call and no real DSH run",
+      "failureMessage": null
+    },
+    {
+      "name": "A16 a source change during the audit is reported as an audit failure",
+      "file": "test/07-audit.test.mjs",
+      "acceptanceItems": [
+        "A16"
+      ],
+      "result": "passed",
+      "command": "node tools/run-tests.mjs",
+      "durationMs": 3220,
+      "mocked": true,
+      "mockedScope": "fake child process (fixtures/fake-runner.mjs): success, failure, timeout, cancellation, descendants, large output and secret fixtures — no model call and no real DSH run",
+      "failureMessage": null
+    },
+    {
+      "name": "A16 a modified snapshot is reported as not read-only",
+      "file": "test/07-audit.test.mjs",
+      "acceptanceItems": [
+        "A16"
+      ],
+      "result": "passed",
+      "command": "node tools/run-tests.mjs",
+      "durationMs": 984,
+      "mocked": true,
+      "mockedScope": "fake child process (fixtures/fake-runner.mjs): success, failure, timeout, cancellation, descendants, large output and secret fixtures — no model call and no real DSH run",
+      "failureMessage": null
+    },
+    {
+      "name": "A17 the documentation states the real isolation and redaction boundaries",
+      "file": "test/08-deliverables.test.mjs",
+      "acceptanceItems": [
+        "A17"
+      ],
+      "result": "passed",
+      "command": "node tools/run-tests.mjs",
+      "durationMs": 1,
+      "mocked": false,
+      "mockedScope": "artifact and documentation checks only; no subprocess, no model call",
+      "failureMessage": null
+    },
+    {
+      "name": "A18 example configs and the Codex MCP snippet exist without credentials",
+      "file": "test/08-deliverables.test.mjs",
+      "acceptanceItems": [
+        "A18"
+      ],
+      "result": "passed",
+      "command": "node tools/run-tests.mjs",
+      "durationMs": 1,
+      "mocked": false,
+      "mockedScope": "artifact and documentation checks only; no subprocess, no model call",
+      "failureMessage": null
+    },
+    {
+      "name": "A18 dependencies are pinned and the build artifact is present",
+      "file": "test/08-deliverables.test.mjs",
+      "acceptanceItems": [
+        "A18"
+      ],
+      "result": "passed",
+      "command": "node tools/run-tests.mjs",
+      "durationMs": 0,
+      "mocked": false,
+      "mockedScope": "artifact and documentation checks only; no subprocess, no model call",
+      "failureMessage": null
+    },
+    {
+      "name": "A18 reports exist and the source manifest verifies",
+      "file": "test/08-deliverables.test.mjs",
+      "acceptanceItems": [
+        "A18"
+      ],
+      "result": "passed",
+      "command": "node tools/run-tests.mjs",
+      "durationMs": 12,
+      "mocked": false,
+      "mockedScope": "artifact and documentation checks only; no subprocess, no model call",
+      "failureMessage": null
+    },
+    {
+      "name": "R01 a configured literal can never be reassembled on disk at any split point",
+      "file": "test/09-fix-r01-r02-r07.test.mjs",
+      "acceptanceItems": [],
+      "result": "passed",
+      "command": "node tools/run-tests.mjs",
+      "durationMs": 12,
+      "mocked": true,
+      "mockedScope": "fake child process (fixtures/fake-runner.mjs): success, failure, timeout, cancellation, descendants, large output and secret fixtures — no model call and no real DSH run",
+      "failureMessage": null
+    },
+    {
+      "name": "R01 one big chunk, many short chunks, stdout-style text and pattern keys",
+      "file": "test/09-fix-r01-r02-r07.test.mjs",
+      "acceptanceItems": [],
+      "result": "passed",
+      "command": "node tools/run-tests.mjs",
+      "durationMs": 6,
+      "mocked": true,
+      "mockedScope": "fake child process (fixtures/fake-runner.mjs): success, failure, timeout, cancellation, descendants, large output and secret fixtures — no model call and no real DSH run",
+      "failureMessage": null
+    },
+    {
+      "name": "R01 an unterminated line is buffered, not partially emitted, and flushes redacted",
+      "file": "test/09-fix-r01-r02-r07.test.mjs",
+      "acceptanceItems": [],
+      "result": "passed",
+      "command": "node tools/run-tests.mjs",
+      "durationMs": 4,
+      "mocked": true,
+      "mockedScope": "fake child process (fixtures/fake-runner.mjs): success, failure, timeout, cancellation, descendants, large output and secret fixtures — no model call and no real DSH run",
+      "failureMessage": null
+    },
+    {
+      "name": "R02 snapshot policy: copy and manifest share one rule set",
+      "file": "test/09-fix-r01-r02-r07.test.mjs",
+      "acceptanceItems": [],
+      "result": "passed",
+      "command": "node tools/run-tests.mjs",
+      "durationMs": 23,
+      "mocked": true,
+      "mockedScope": "fake child process (fixtures/fake-runner.mjs): success, failure, timeout, cancellation, descendants, large output and secret fixtures — no model call and no real DSH run",
+      "failureMessage": null
+    },
+    {
+      "name": "R02 change detection covers every copied file (modify, add, delete)",
+      "file": "test/09-fix-r01-r02-r07.test.mjs",
+      "acceptanceItems": [],
+      "result": "passed",
+      "command": "node tools/run-tests.mjs",
+      "durationMs": 15,
+      "mocked": true,
+      "mockedScope": "fake child process (fixtures/fake-runner.mjs): success, failure, timeout, cancellation, descendants, large output and secret fixtures — no model call and no real DSH run",
+      "failureMessage": null
+    },
+    {
+      "name": "R02 an explicit glob deny rule works in copy and manifest, and an empty policy is refused",
+      "file": "test/09-fix-r01-r02-r07.test.mjs",
+      "acceptanceItems": [],
+      "result": "passed",
+      "command": "node tools/run-tests.mjs",
+      "durationMs": 11,
+      "mocked": true,
+      "mockedScope": "fake child process (fixtures/fake-runner.mjs): success, failure, timeout, cancellation, descendants, large output and secret fixtures — no model call and no real DSH run",
+      "failureMessage": null
+    },
+    {
+      "name": "R02 reparse points are skipped and reported, never followed",
+      "file": "test/09-fix-r01-r02-r07.test.mjs",
+      "acceptanceItems": [],
+      "result": "passed",
+      "command": "node tools/run-tests.mjs",
+      "durationMs": 6,
+      "mocked": true,
+      "mockedScope": "fake child process (fixtures/fake-runner.mjs): success, failure, timeout, cancellation, descendants, large output and secret fixtures — no model call and no real DSH run",
+      "failureMessage": null
+    },
+    {
+      "name": "R07 incremental decoding keeps multi-byte characters intact at every byte boundary",
+      "file": "test/09-fix-r01-r02-r07.test.mjs",
+      "acceptanceItems": [],
+      "result": "passed",
+      "command": "node tools/run-tests.mjs",
+      "durationMs": 10,
+      "mocked": true,
+      "mockedScope": "fake child process (fixtures/fake-runner.mjs): success, failure, timeout, cancellation, descendants, large output and secret fixtures — no model call and no real DSH run",
+      "failureMessage": null
+    },
+    {
+      "name": "R07 pagination never splits a code point and always advances",
+      "file": "test/09-fix-r01-r02-r07.test.mjs",
+      "acceptanceItems": [],
+      "result": "passed",
+      "command": "node tools/run-tests.mjs",
+      "durationMs": 1,
+      "mocked": true,
+      "mockedScope": "fake child process (fixtures/fake-runner.mjs): success, failure, timeout, cancellation, descendants, large output and secret fixtures — no model call and no real DSH run",
+      "failureMessage": null
+    },
+    {
+      "name": "R07 invalid UTF-8 is replaced, never silently dropped",
+      "file": "test/09-fix-r01-r02-r07.test.mjs",
+      "acceptanceItems": [],
+      "result": "passed",
+      "command": "node tools/run-tests.mjs",
+      "durationMs": 4,
+      "mocked": true,
+      "mockedScope": "fake child process (fixtures/fake-runner.mjs): success, failure, timeout, cancellation, descendants, large output and secret fixtures — no model call and no real DSH run",
+      "failureMessage": null
+    },
+    {
+      "name": "R02 manifests stay deterministic and a bare name rule is not a literal file name",
+      "file": "test/09-fix-r01-r02-r07.test.mjs",
+      "acceptanceItems": [],
+      "result": "passed",
+      "command": "node tools/run-tests.mjs",
+      "durationMs": 7,
+      "mocked": true,
+      "mockedScope": "fake child process (fixtures/fake-runner.mjs): success, failure, timeout, cancellation, descendants, large output and secret fixtures — no model call and no real DSH run",
+      "failureMessage": null
+    },
+    {
+      "name": "R03 the execution slot stays occupied until a real process tree is confirmed stopped",
+      "file": "test/10-fix-r03-r04.test.mjs",
+      "acceptanceItems": [],
+      "result": "passed",
+      "command": "node tools/run-tests.mjs",
+      "durationMs": 1204,
+      "mocked": true,
+      "mockedScope": "fake child process (fixtures/fake-runner.mjs): success, failure, timeout, cancellation, descendants, large output and secret fixtures — no model call and no real DSH run",
+      "failureMessage": null
+    },
+    {
+      "name": "R03 an unconfirmed stop keeps the job in stopping and refuses new work",
+      "file": "test/10-fix-r03-r04.test.mjs",
+      "acceptanceItems": [],
+      "result": "passed",
+      "command": "node tools/run-tests.mjs",
+      "durationMs": 2397,
+      "mocked": true,
+      "mockedScope": "fake child process (fixtures/fake-runner.mjs): success, failure, timeout, cancellation, descendants, large output and secret fixtures — no model call and no real DSH run",
+      "failureMessage": null
+    },
+    {
+      "name": "R03 a slow stop reports stopping first and finalizes only after confirmation",
+      "file": "test/10-fix-r03-r04.test.mjs",
+      "acceptanceItems": [],
+      "result": "passed",
+      "command": "node tools/run-tests.mjs",
+      "durationMs": 2684,
+      "mocked": true,
+      "mockedScope": "fake child process (fixtures/fake-runner.mjs): success, failure, timeout, cancellation, descendants, large output and secret fixtures — no model call and no real DSH run",
+      "failureMessage": null
+    },
+    {
+      "name": "R03 a timeout that cannot be confirmed stays stopping with the slot held",
+      "file": "test/10-fix-r03-r04.test.mjs",
+      "acceptanceItems": [],
+      "result": "passed",
+      "command": "node tools/run-tests.mjs",
+      "durationMs": 1818,
+      "mocked": true,
+      "mockedScope": "fake child process (fixtures/fake-runner.mjs): success, failure, timeout, cancellation, descendants, large output and secret fixtures — no model call and no real DSH run",
+      "failureMessage": null
+    },
+    {
+      "name": "R03 a normal disconnect stops and confirms the owned tree before exiting",
+      "file": "test/10-fix-r03-r04.test.mjs",
+      "acceptanceItems": [],
+      "result": "passed",
+      "command": "node tools/run-tests.mjs",
+      "durationMs": 2787,
+      "mocked": true,
+      "mockedScope": "fake child process (fixtures/fake-runner.mjs): success, failure, timeout, cancellation, descendants, large output and secret fixtures — no model call and no real DSH run",
+      "failureMessage": null
+    },
+    {
+      "name": "R03 in-process contract: deferred and ignored kill never release the slot or freeze audit evidence",
+      "file": "test/10-fix-r03-r04.test.mjs",
+      "acceptanceItems": [],
+      "result": "passed",
+      "command": "node tools/run-tests.mjs",
+      "durationMs": 2715,
+      "mocked": true,
+      "mockedScope": "fake child process (fixtures/fake-runner.mjs): success, failure, timeout, cancellation, descendants, large output and secret fixtures — no model call and no real DSH run",
+      "failureMessage": null
+    },
+    {
+      "name": "R04 a second real MCP server on the same state directory refuses to start",
+      "file": "test/10-fix-r03-r04.test.mjs",
+      "acceptanceItems": [],
+      "result": "passed",
+      "command": "node tools/run-tests.mjs",
+      "durationMs": 2231,
+      "mocked": true,
+      "mockedScope": "fake child process (fixtures/fake-runner.mjs): success, failure, timeout, cancellation, descendants, large output and secret fixtures — no model call and no real DSH run",
+      "failureMessage": null
+    },
+    {
+      "name": "R04 a second in-process manager is read-only and never rewrites the owner records",
+      "file": "test/10-fix-r03-r04.test.mjs",
+      "acceptanceItems": [],
+      "result": "passed",
+      "command": "node tools/run-tests.mjs",
+      "durationMs": 111,
+      "mocked": true,
+      "mockedScope": "fake child process (fixtures/fake-runner.mjs): success, failure, timeout, cancellation, descendants, large output and secret fixtures — no model call and no real DSH run",
+      "failureMessage": null
+    },
+    {
+      "name": "R04 stale locks are taken over; a fresh live owner is respected",
+      "file": "test/10-fix-r03-r04.test.mjs",
+      "acceptanceItems": [],
+      "result": "passed",
+      "command": "node tools/run-tests.mjs",
+      "durationMs": 176,
+      "mocked": true,
+      "mockedScope": "fake child process (fixtures/fake-runner.mjs): success, failure, timeout, cancellation, descendants, large output and secret fixtures — no model call and no real DSH run",
+      "failureMessage": null
+    },
+    {
+      "name": "R05 a corrupt request index never starts a second run",
+      "file": "test/11-fix-r05-r06.test.mjs",
+      "acceptanceItems": [],
+      "result": "passed",
+      "command": "node tools/run-tests.mjs",
+      "durationMs": 76,
+      "mocked": true,
+      "mockedScope": "fake child process (fixtures/fake-runner.mjs): success, failure, timeout, cancellation, descendants, large output and secret fixtures — no model call and no real DSH run",
+      "failureMessage": null
+    },
+    {
+      "name": "R05 a missing index, an index pointing nowhere and a stray legacy file all reuse the original job",
+      "file": "test/11-fix-r05-r06.test.mjs",
+      "acceptanceItems": [],
+      "result": "passed",
+      "command": "node tools/run-tests.mjs",
+      "durationMs": 74,
+      "mocked": true,
+      "mockedScope": "fake child process (fixtures/fake-runner.mjs): success, failure, timeout, cancellation, descendants, large output and secret fixtures — no model call and no real DSH run",
+      "failureMessage": null
+    },
+    {
+      "name": "R05 an unreadable index with no surviving evidence refuses instead of running",
+      "file": "test/11-fix-r05-r06.test.mjs",
+      "acceptanceItems": [],
+      "result": "passed",
+      "command": "node tools/run-tests.mjs",
+      "durationMs": 41,
+      "mocked": true,
+      "mockedScope": "fake child process (fixtures/fake-runner.mjs): success, failure, timeout, cancellation, descendants, large output and secret fixtures — no model call and no real DSH run",
+      "failureMessage": null
+    },
+    {
+      "name": "R05 a different hash under the same requestId is still a conflict",
+      "file": "test/11-fix-r05-r06.test.mjs",
+      "acceptanceItems": [],
+      "result": "passed",
+      "command": "node tools/run-tests.mjs",
+      "durationMs": 69,
+      "mocked": true,
+      "mockedScope": "fake child process (fixtures/fake-runner.mjs): success, failure, timeout, cancellation, descendants, large output and secret fixtures — no model call and no real DSH run",
+      "failureMessage": null
+    },
+    {
+      "name": "R06 legal request ids persist under hashed, Windows-safe file names",
+      "file": "test/11-fix-r05-r06.test.mjs",
+      "acceptanceItems": [],
+      "result": "passed",
+      "command": "node tools/run-tests.mjs",
+      "durationMs": 132,
+      "mocked": true,
+      "mockedScope": "fake child process (fixtures/fake-runner.mjs): success, failure, timeout, cancellation, descendants, large output and secret fixtures — no model call and no real DSH run",
+      "failureMessage": null
+    },
+    {
+      "name": "R06 a persistence failure rolls the submission back and never starts a run",
+      "file": "test/11-fix-r05-r06.test.mjs",
+      "acceptanceItems": [],
+      "result": "passed",
+      "command": "node tools/run-tests.mjs",
+      "durationMs": 158,
+      "mocked": true,
+      "mockedScope": "fake child process (fixtures/fake-runner.mjs): success, failure, timeout, cancellation, descendants, large output and secret fixtures — no model call and no real DSH run",
+      "failureMessage": null
+    },
+    {
+      "name": "R06 a directory occupying the index path is refused before any persistence",
+      "file": "test/11-fix-r05-r06.test.mjs",
+      "acceptanceItems": [],
+      "result": "passed",
+      "command": "node tools/run-tests.mjs",
+      "durationMs": 25,
+      "mocked": true,
+      "mockedScope": "fake child process (fixtures/fake-runner.mjs): success, failure, timeout, cancellation, descendants, large output and secret fixtures — no model call and no real DSH run",
+      "failureMessage": null
+    },
+    {
+      "name": "F2-01 a credential prefix retained at the cap is never written",
+      "file": "test/12-fix-f2-01-f2-05.test.mjs",
+      "acceptanceItems": [],
+      "result": "passed",
+      "command": "node tools/run-tests.mjs",
+      "durationMs": 5,
+      "mocked": true,
+      "mockedScope": "fake child process (fixtures/fake-runner.mjs): success, failure, timeout, cancellation, descendants, large output and secret fixtures — no model call and no real DSH run",
+      "failureMessage": null
+    },
+    {
+      "name": "F2-01 every cap-crossing offset and chunk shape stays safe",
+      "file": "test/12-fix-f2-01-f2-05.test.mjs",
+      "acceptanceItems": [],
+      "result": "passed",
+      "command": "node tools/run-tests.mjs",
+      "durationMs": 18,
+      "mocked": true,
+      "mockedScope": "fake child process (fixtures/fake-runner.mjs): success, failure, timeout, cancellation, descendants, large output and secret fixtures — no model call and no real DSH run",
+      "failureMessage": null
+    },
+    {
+      "name": "F2-01 a newline inside the discarded region cannot expose the retained prefix",
+      "file": "test/12-fix-f2-01-f2-05.test.mjs",
+      "acceptanceItems": [],
+      "result": "passed",
+      "command": "node tools/run-tests.mjs",
+      "durationMs": 4,
+      "mocked": true,
+      "mockedScope": "fake child process (fixtures/fake-runner.mjs): success, failure, timeout, cancellation, descendants, large output and secret fixtures — no model call and no real DSH run",
+      "failureMessage": null
+    },
+    {
+      "name": "F2-01 complete lines before the cap are kept, and one huge chunk is bounded",
+      "file": "test/12-fix-f2-01-f2-05.test.mjs",
+      "acceptanceItems": [],
+      "result": "passed",
+      "command": "node tools/run-tests.mjs",
+      "durationMs": 8,
+      "mocked": true,
+      "mockedScope": "fake child process (fixtures/fake-runner.mjs): success, failure, timeout, cancellation, descendants, large output and secret fixtures — no model call and no real DSH run",
+      "failureMessage": null
+    },
+    {
+      "name": "F2-01 a stream with no line break keeps nothing, and normal EOF still flushes",
+      "file": "test/12-fix-f2-01-f2-05.test.mjs",
+      "acceptanceItems": [],
+      "result": "passed",
+      "command": "node tools/run-tests.mjs",
+      "durationMs": 6,
+      "mocked": true,
+      "mockedScope": "fake child process (fixtures/fake-runner.mjs): success, failure, timeout, cancellation, descendants, large output and secret fixtures — no model call and no real DSH run",
+      "failureMessage": null
+    },
+    {
+      "name": "F2-01 stdout and stderr are captured independently under the same rules",
+      "file": "test/12-fix-f2-01-f2-05.test.mjs",
+      "acceptanceItems": [],
+      "result": "passed",
+      "command": "node tools/run-tests.mjs",
+      "durationMs": 7,
+      "mocked": true,
+      "mockedScope": "fake child process (fixtures/fake-runner.mjs): success, failure, timeout, cancellation, descendants, large output and secret fixtures — no model call and no real DSH run",
+      "failureMessage": null
+    },
+    {
+      "name": "F2-05 budgets below the largest code point are rejected at load",
+      "file": "test/12-fix-f2-01-f2-05.test.mjs",
+      "acceptanceItems": [],
+      "result": "passed",
+      "command": "node tools/run-tests.mjs",
+      "durationMs": 12,
+      "mocked": true,
+      "mockedScope": "fake child process (fixtures/fake-runner.mjs): success, failure, timeout, cancellation, descendants, large output and secret fixtures — no model call and no real DSH run",
+      "failureMessage": null
+    },
+    {
+      "name": "F2-05 every successful page respects the hard byte ceiling",
+      "file": "test/12-fix-f2-01-f2-05.test.mjs",
+      "acceptanceItems": [],
+      "result": "passed",
+      "command": "node tools/run-tests.mjs",
+      "durationMs": 6,
+      "mocked": true,
+      "mockedScope": "fake child process (fixtures/fake-runner.mjs): success, failure, timeout, cancellation, descendants, large output and secret fixtures — no model call and no real DSH run",
+      "failureMessage": null
+    },
+    {
+      "name": "F2-02 an identity that does not match the recorded child is never terminated",
+      "file": "test/13-fix-f2-02-03-04.test.mjs",
+      "acceptanceItems": [],
+      "result": "passed",
+      "command": "node tools/run-tests.mjs",
+      "durationMs": 4058,
+      "mocked": true,
+      "mockedScope": "fake child process (fixtures/fake-runner.mjs): success, failure, timeout, cancellation, descendants, large output and secret fixtures — no model call and no real DSH run",
+      "failureMessage": null
+    },
+    {
+      "name": "F2-03 the initial claim is arbitrated: a starter that loses the lock is not an owner",
+      "file": "test/13-fix-f2-02-03-04.test.mjs",
+      "acceptanceItems": [],
+      "result": "passed",
+      "command": "node tools/run-tests.mjs",
+      "durationMs": 69,
+      "mocked": true,
+      "mockedScope": "fake child process (fixtures/fake-runner.mjs): success, failure, timeout, cancellation, descendants, large output and secret fixtures — no model call and no real DSH run",
+      "failureMessage": null
+    },
+    {
+      "name": "F2-03 ownership is dynamic: a takeover revokes the old owner and stops its job",
+      "file": "test/13-fix-f2-02-03-04.test.mjs",
+      "acceptanceItems": [],
+      "result": "passed",
+      "command": "node tools/run-tests.mjs",
+      "durationMs": 308,
+      "mocked": true,
+      "mockedScope": "fake child process (fixtures/fake-runner.mjs): success, failure, timeout, cancellation, descendants, large output and secret fixtures — no model call and no real DSH run",
+      "failureMessage": null
+    },
+    {
+      "name": "F2-03 a released handle immediately loses execution rights",
+      "file": "test/13-fix-f2-02-03-04.test.mjs",
+      "acceptanceItems": [],
+      "result": "passed",
+      "command": "node tools/run-tests.mjs",
+      "durationMs": 34,
+      "mocked": true,
+      "mockedScope": "fake child process (fixtures/fake-runner.mjs): success, failure, timeout, cancellation, descendants, large output and secret fixtures — no model call and no real DSH run",
+      "failureMessage": null
+    },
+    {
+      "name": "F2-04 unreadable job evidence blocks new work instead of proving a new request",
+      "file": "test/13-fix-f2-02-03-04.test.mjs",
+      "acceptanceItems": [],
+      "result": "passed",
+      "command": "node tools/run-tests.mjs",
+      "durationMs": 141,
+      "mocked": true,
+      "mockedScope": "fake child process (fixtures/fake-runner.mjs): success, failure, timeout, cancellation, descendants, large output and secret fixtures — no model call and no real DSH run",
+      "failureMessage": null
+    },
+    {
+      "name": "F2-04 a directory listing failure is an integrity error, not an empty store",
+      "file": "test/13-fix-f2-02-03-04.test.mjs",
+      "acceptanceItems": [],
+      "result": "passed",
+      "command": "node tools/run-tests.mjs",
+      "durationMs": 6,
+      "mocked": true,
+      "mockedScope": "fake child process (fixtures/fake-runner.mjs): success, failure, timeout, cancellation, descendants, large output and secret fixtures — no model call and no real DSH run",
+      "failureMessage": null
+    },
+    {
+      "name": "F2-04 an index cross-linked to another request never returns that job",
+      "file": "test/13-fix-f2-02-03-04.test.mjs",
+      "acceptanceItems": [],
+      "result": "passed",
+      "command": "node tools/run-tests.mjs",
+      "durationMs": 86,
+      "mocked": true,
+      "mockedScope": "fake child process (fixtures/fake-runner.mjs): success, failure, timeout, cancellation, descendants, large output and secret fixtures — no model call and no real DSH run",
+      "failureMessage": null
+    },
+    {
+      "name": "F2-04 production configuration refuses test-only fault injection",
+      "file": "test/13-fix-f2-02-03-04.test.mjs",
+      "acceptanceItems": [],
+      "result": "passed",
+      "command": "node tools/run-tests.mjs",
+      "durationMs": 7,
+      "mocked": true,
+      "mockedScope": "fake child process (fixtures/fake-runner.mjs): success, failure, timeout, cancellation, descendants, large output and secret fixtures — no model call and no real DSH run",
+      "failureMessage": null
+    },
+    {
+      "name": "F3-01 a delayed first starter refuses a healthy owner without touching it",
+      "file": "test/14-fix-f3.test.mjs",
+      "acceptanceItems": [],
+      "result": "passed",
+      "command": "node tools/run-tests.mjs",
+      "durationMs": 1735,
+      "mocked": true,
+      "mockedScope": "fake child process (fixtures/fake-runner.mjs): success, failure, timeout, cancellation, descendants, large output and secret fixtures — no model call and no real DSH run",
+      "failureMessage": null
+    },
+    {
+      "name": "F3-02 identity comparison requires an exact, complete OS identity",
+      "file": "test/14-fix-f3.test.mjs",
+      "acceptanceItems": [],
+      "result": "passed",
+      "command": "node tools/run-tests.mjs",
+      "durationMs": 5,
+      "mocked": true,
+      "mockedScope": "fake child process (fixtures/fake-runner.mjs): success, failure, timeout, cancellation, descendants, large output and secret fixtures — no model call and no real DSH run",
+      "failureMessage": null
+    },
+    {
+      "name": "F3-02 an incomplete CIM response is unavailable, not a proven identity",
+      "file": "test/14-fix-f3.test.mjs",
+      "acceptanceItems": [],
+      "result": "passed",
+      "command": "node tools/run-tests.mjs",
+      "durationMs": 1,
+      "mocked": true,
+      "mockedScope": "fake child process (fixtures/fake-runner.mjs): success, failure, timeout, cancellation, descendants, large output and secret fixtures — no model call and no real DSH run",
+      "failureMessage": null
+    },
+    {
+      "name": "F3-02 a real sentinel with a near-miss identity is neither killed nor treated as resolved",
+      "file": "test/14-fix-f3.test.mjs",
+      "acceptanceItems": [],
+      "result": "passed",
+      "command": "node tools/run-tests.mjs",
+      "durationMs": 4006,
+      "mocked": true,
+      "mockedScope": "fake child process (fixtures/fake-runner.mjs): success, failure, timeout, cancellation, descendants, large output and secret fixtures — no model call and no real DSH run",
+      "failureMessage": null
+    },
+    {
+      "name": "F3-03 legacy records without childIdentity stay diagnosable in both configurations",
+      "file": "test/14-fix-f3.test.mjs",
+      "acceptanceItems": [],
+      "result": "passed",
+      "command": "node tools/run-tests.mjs",
+      "durationMs": 3090,
+      "mocked": true,
+      "mockedScope": "fake child process (fixtures/fake-runner.mjs): success, failure, timeout, cancellation, descendants, large output and secret fixtures — no model call and no real DSH run",
+      "failureMessage": null
+    },
+    {
+      "name": "F3-04 the delivered source manifest matches the delivered files exactly",
+      "file": "test/14-fix-f3.test.mjs",
+      "acceptanceItems": [],
+      "result": "passed",
+      "command": "node tools/run-tests.mjs",
+      "durationMs": 7,
+      "mocked": true,
+      "mockedScope": "fake child process (fixtures/fake-runner.mjs): success, failure, timeout, cancellation, descendants, large output and secret fixtures — no model call and no real DSH run",
+      "failureMessage": null
+    },
+    {
+      "name": "F4-01 a heartbeat that resumes after a takeover cannot resurrect its owner",
+      "file": "test/15-fix-f4.test.mjs",
+      "acceptanceItems": [],
+      "result": "passed",
+      "command": "node tools/run-tests.mjs",
+      "durationMs": 100,
+      "mocked": true,
+      "mockedScope": "fake child process (fixtures/fake-runner.mjs): success, failure, timeout, cancellation, descendants, large output and secret fixtures — no model call and no real DSH run",
+      "failureMessage": null
+    },
+    {
+      "name": "F4-01 a release can neither delete a winner lock nor outlive its own ownership",
+      "file": "test/15-fix-f4.test.mjs",
+      "acceptanceItems": [],
+      "result": "passed",
+      "command": "node tools/run-tests.mjs",
+      "durationMs": 774,
+      "mocked": true,
+      "mockedScope": "fake child process (fixtures/fake-runner.mjs): success, failure, timeout, cancellation, descendants, large output and secret fixtures — no model call and no real DSH run",
+      "failureMessage": null
+    },
+    {
+      "name": "F4-01 a refresh visible before the swap aborts the takeover",
+      "file": "test/15-fix-f4.test.mjs",
+      "acceptanceItems": [],
+      "result": "passed",
+      "command": "node tools/run-tests.mjs",
+      "durationMs": 133,
+      "mocked": true,
+      "mockedScope": "fake child process (fixtures/fake-runner.mjs): success, failure, timeout, cancellation, descendants, large output and secret fixtures — no model call and no real DSH run",
+      "failureMessage": null
+    },
+    {
+      "name": "F4-01 a live arbitration holder is never reclaimed by age; a dead one is",
+      "file": "test/15-fix-f4.test.mjs",
+      "acceptanceItems": [],
+      "result": "passed",
+      "command": "node tools/run-tests.mjs",
+      "durationMs": 708,
+      "mocked": true,
+      "mockedScope": "fake child process (fixtures/fake-runner.mjs): success, failure, timeout, cancellation, descendants, large output and secret fixtures — no model call and no real DSH run",
+      "failureMessage": null
+    },
+    {
+      "name": "F4-01 real dual bridge: a paused heartbeat cannot steal back a healthy winner",
+      "file": "test/15-fix-f4.test.mjs",
+      "acceptanceItems": [],
+      "result": "passed",
+      "command": "node tools/run-tests.mjs",
+      "durationMs": 4864,
+      "mocked": true,
+      "mockedScope": "fake child process (fixtures/fake-runner.mjs): success, failure, timeout, cancellation, descendants, large output and secret fixtures — no model call and no real DSH run",
+      "failureMessage": null
+    },
+    {
+      "name": "F5-01 a denied arbitration never enters the shared delete",
+      "file": "test/16-fix-f5.test.mjs",
+      "acceptanceItems": [],
+      "result": "passed",
+      "command": "node tools/run-tests.mjs",
+      "durationMs": 1901,
+      "mocked": true,
+      "mockedScope": "fake child process (fixtures/fake-runner.mjs): success, failure, timeout, cancellation, descendants, large output and secret fixtures — no model call and no real DSH run",
+      "failureMessage": null
+    },
+    {
+      "name": "F5-01 an invalid or unreadable guard is never treated as a dead holder",
+      "file": "test/16-fix-f5.test.mjs",
+      "acceptanceItems": [],
+      "result": "passed",
+      "command": "node tools/run-tests.mjs",
+      "durationMs": 22893,
+      "mocked": true,
+      "mockedScope": "fake child process (fixtures/fake-runner.mjs): success, failure, timeout, cancellation, descendants, large output and secret fixtures — no model call and no real DSH run",
+      "failureMessage": null
+    },
+    {
+      "name": "F5-01 an old reclaimer cannot delete a newer live guard",
+      "file": "test/16-fix-f5.test.mjs",
+      "acceptanceItems": [],
+      "result": "passed",
+      "command": "node tools/run-tests.mjs",
+      "durationMs": 1889,
+      "mocked": true,
+      "mockedScope": "fake child process (fixtures/fake-runner.mjs): success, failure, timeout, cancellation, descendants, large output and secret fixtures — no model call and no real DSH run",
+      "failureMessage": null
+    },
+    {
+      "name": "F5-01 real dual bridge: a denied release cannot stop the winner",
+      "file": "test/16-fix-f5.test.mjs",
+      "acceptanceItems": [],
+      "result": "passed",
+      "command": "node tools/run-tests.mjs",
+      "durationMs": 2813,
+      "mocked": true,
+      "mockedScope": "fake child process (fixtures/fake-runner.mjs): success, failure, timeout, cancellation, descendants, large output and secret fixtures — no model call and no real DSH run",
+      "failureMessage": null
+    },
+    {
+      "name": "F6-01 the liveness query is tri-state and only ESRCH proves death",
+      "file": "test/17-fix-f6.test.mjs",
+      "acceptanceItems": [],
+      "result": "passed",
+      "command": "node tools/run-tests.mjs",
+      "durationMs": 1,
+      "mocked": true,
+      "mockedScope": "fake child process (fixtures/fake-runner.mjs): success, failure, timeout, cancellation, descendants, large output and secret fixtures — no model call and no real DSH run",
+      "failureMessage": null
+    },
+    {
+      "name": "F6-01 an unproven query never authorizes reclaiming a live guard",
+      "file": "test/17-fix-f6.test.mjs",
+      "acceptanceItems": [],
+      "result": "passed",
+      "command": "node tools/run-tests.mjs",
+      "durationMs": 11516,
+      "mocked": true,
+      "mockedScope": "fake child process (fixtures/fake-runner.mjs): success, failure, timeout, cancellation, descendants, large output and secret fixtures — no model call and no real DSH run",
+      "failureMessage": null
+    },
+    {
+      "name": "F6-01 release stays conservative when the guard pid cannot be queried",
+      "file": "test/17-fix-f6.test.mjs",
+      "acceptanceItems": [],
+      "result": "passed",
+      "command": "node tools/run-tests.mjs",
+      "durationMs": 633,
+      "mocked": true,
+      "mockedScope": "fake child process (fixtures/fake-runner.mjs): success, failure, timeout, cancellation, descendants, large output and secret fixtures — no model call and no real DSH run",
+      "failureMessage": null
+    },
+    {
+      "name": "F6-01 unknown liveness never becomes confirmed cleanup or a released block",
+      "file": "test/17-fix-f6.test.mjs",
+      "acceptanceItems": [],
+      "result": "passed",
+      "command": "node tools/run-tests.mjs",
+      "durationMs": 0,
+      "mocked": true,
+      "mockedScope": "fake child process (fixtures/fake-runner.mjs): success, failure, timeout, cancellation, descendants, large output and secret fixtures — no model call and no real DSH run",
+      "failureMessage": null
+    },
+    {
+      "name": "R1 cancel before the deferred start never spawns and never invents a kill",
+      "file": "test/18-fix-r1-r2-r3-r4.test.mjs",
+      "acceptanceItems": [],
+      "result": "passed",
+      "command": "node tools/run-tests.mjs",
+      "durationMs": 323,
+      "mocked": true,
+      "mockedScope": "fake child process (fixtures/fake-runner.mjs): success, failure, timeout, cancellation, descendants, large output and secret fixtures — no model call and no real DSH run",
+      "failureMessage": null
+    },
+    {
+      "name": "R1 shutdown before the deferred start never spawns; the slot is released",
+      "file": "test/18-fix-r1-r2-r3-r4.test.mjs",
+      "acceptanceItems": [],
+      "result": "passed",
+      "command": "node tools/run-tests.mjs",
+      "durationMs": 184,
+      "mocked": true,
+      "mockedScope": "fake child process (fixtures/fake-runner.mjs): success, failure, timeout, cancellation, descendants, large output and secret fixtures — no model call and no real DSH run",
+      "failureMessage": null
+    },
+    {
+      "name": "R1 repeated cancel/shutdown and cancel-then-exit stay single-shot and truthful",
+      "file": "test/18-fix-r1-r2-r3-r4.test.mjs",
+      "acceptanceItems": [],
+      "result": "passed",
+      "command": "node tools/run-tests.mjs",
+      "durationMs": 199,
+      "mocked": true,
+      "mockedScope": "fake child process (fixtures/fake-runner.mjs): success, failure, timeout, cancellation, descendants, large output and secret fixtures — no model call and no real DSH run",
+      "failureMessage": null
+    },
+    {
+      "name": "R1 a running cancellation still calls the owned kill exactly once",
+      "file": "test/18-fix-r1-r2-r3-r4.test.mjs",
+      "acceptanceItems": [],
+      "result": "passed",
+      "command": "node tools/run-tests.mjs",
+      "durationMs": 117,
+      "mocked": true,
+      "mockedScope": "fake child process (fixtures/fake-runner.mjs): success, failure, timeout, cancellation, descendants, large output and secret fixtures — no model call and no real DSH run",
+      "failureMessage": null
+    },
+    {
+      "name": "R1 a running timeout still stops through the owned kill and reports timed_out",
+      "file": "test/18-fix-r1-r2-r3-r4.test.mjs",
+      "acceptanceItems": [],
+      "result": "passed",
+      "command": "node tools/run-tests.mjs",
+      "durationMs": 1517,
+      "mocked": true,
+      "mockedScope": "fake child process (fixtures/fake-runner.mjs): success, failure, timeout, cancellation, descendants, large output and secret fixtures — no model call and no real DSH run",
+      "failureMessage": null
+    },
+    {
+      "name": "R1 a late exit during a pending cleanup cannot rewrite the terminal state",
+      "file": "test/18-fix-r1-r2-r3-r4.test.mjs",
+      "acceptanceItems": [],
+      "result": "passed",
+      "command": "node tools/run-tests.mjs",
+      "durationMs": 116,
+      "mocked": true,
+      "mockedScope": "fake child process (fixtures/fake-runner.mjs): success, failure, timeout, cancellation, descendants, large output and secret fixtures — no model call and no real DSH run",
+      "failureMessage": null
+    },
+    {
+      "name": "R1 BUSY still protects the occupied slot",
+      "file": "test/18-fix-r1-r2-r3-r4.test.mjs",
+      "acceptanceItems": [],
+      "result": "passed",
+      "command": "node tools/run-tests.mjs",
+      "durationMs": 118,
+      "mocked": true,
+      "mockedScope": "fake child process (fixtures/fake-runner.mjs): success, failure, timeout, cancellation, descendants, large output and secret fixtures — no model call and no real DSH run",
+      "failureMessage": null
+    },
+    {
+      "name": "R2 short explicit literals (1/7/8 chars) are redacted in direct and env mode",
+      "file": "test/18-fix-r1-r2-r3-r4.test.mjs",
+      "acceptanceItems": [],
+      "result": "passed",
+      "command": "node tools/run-tests.mjs",
+      "durationMs": 765,
+      "mocked": true,
+      "mockedScope": "fake child process (fixtures/fake-runner.mjs): success, failure, timeout, cancellation, descendants, large output and secret fixtures — no model call and no real DSH run",
+      "failureMessage": null
+    },
+    {
+      "name": "R2 an empty configured literal is refused at load; an unset/empty env var is a boundary, not a leak",
+      "file": "test/18-fix-r1-r2-r3-r4.test.mjs",
+      "acceptanceItems": [],
+      "result": "passed",
+      "command": "node tools/run-tests.mjs",
+      "durationMs": 5,
+      "mocked": true,
+      "mockedScope": "fake child process (fixtures/fake-runner.mjs): success, failure, timeout, cancellation, descendants, large output and secret fixtures — no model call and no real DSH run",
+      "failureMessage": null
+    },
+    {
+      "name": "R2 overlapping literals, chunk splits, newlines and truncation never expose a configured value",
+      "file": "test/18-fix-r1-r2-r3-r4.test.mjs",
+      "acceptanceItems": [],
+      "result": "passed",
+      "command": "node tools/run-tests.mjs",
+      "durationMs": 10,
+      "mocked": true,
+      "mockedScope": "fake child process (fixtures/fake-runner.mjs): success, failure, timeout, cancellation, descendants, large output and secret fixtures — no model call and no real DSH run",
+      "failureMessage": null
+    },
+    {
+      "name": "R2 diagnostics never print a real value",
+      "file": "test/18-fix-r1-r2-r3-r4.test.mjs",
+      "acceptanceItems": [],
+      "result": "passed",
+      "command": "node tools/run-tests.mjs",
+      "durationMs": 5,
+      "mocked": true,
+      "mockedScope": "fake child process (fixtures/fake-runner.mjs): success, failure, timeout, cancellation, descendants, large output and secret fixtures — no model call and no real DSH run",
+      "failureMessage": null
+    },
+    {
+      "name": "R3 normal empty output is readable; a missing log with recorded bytes is not",
+      "file": "test/18-fix-r1-r2-r3-r4.test.mjs",
+      "acceptanceItems": [],
+      "result": "passed",
+      "command": "node tools/run-tests.mjs",
+      "durationMs": 105,
+      "mocked": true,
+      "mockedScope": "fake child process (fixtures/fake-runner.mjs): success, failure, timeout, cancellation, descendants, large output and secret fixtures — no model call and no real DSH run",
+      "failureMessage": null
+    },
+    {
+      "name": "R3 missing/empty/shortened/unreadable logs refuse to report success",
+      "file": "test/18-fix-r1-r2-r3-r4.test.mjs",
+      "acceptanceItems": [],
+      "result": "passed",
+      "command": "node tools/run-tests.mjs",
+      "durationMs": 452,
+      "mocked": true,
+      "mockedScope": "fake child process (fixtures/fake-runner.mjs): success, failure, timeout, cancellation, descendants, large output and secret fixtures — no model call and no real DSH run",
+      "failureMessage": null
+    },
+    {
+      "name": "R3 a healthy single stream is independent of a damaged other stream",
+      "file": "test/18-fix-r1-r2-r3-r4.test.mjs",
+      "acceptanceItems": [],
+      "result": "passed",
+      "command": "node tools/run-tests.mjs",
+      "durationMs": 121,
+      "mocked": true,
+      "mockedScope": "fake child process (fixtures/fake-runner.mjs): success, failure, timeout, cancellation, descendants, large output and secret fixtures — no model call and no real DSH run",
+      "failureMessage": null
+    },
+    {
+      "name": "R3 truncation markers are stripped and multi-byte pages stay within the byte ceiling",
+      "file": "test/18-fix-r1-r2-r3-r4.test.mjs",
+      "acceptanceItems": [],
+      "result": "passed",
+      "command": "node tools/run-tests.mjs",
+      "durationMs": 151,
+      "mocked": true,
+      "mockedScope": "fake child process (fixtures/fake-runner.mjs): success, failure, timeout, cancellation, descendants, large output and secret fixtures — no model call and no real DSH run",
+      "failureMessage": null
+    },
+    {
+      "name": "R3 a 5 MiB multibyte truncation keeps storedBytes aligned with the stored bytes",
+      "file": "test/18-fix-r1-r2-r3-r4.test.mjs",
+      "acceptanceItems": [],
+      "result": "passed",
+      "command": "node tools/run-tests.mjs",
+      "durationMs": 1148,
+      "mocked": true,
+      "mockedScope": "fake child process (fixtures/fake-runner.mjs): success, failure, timeout, cancellation, descendants, large output and secret fixtures — no model call and no real DSH run",
+      "failureMessage": null
+    },
+    {
+      "name": "R3 bytes removed from a truncated log cannot hide behind the truncation marker",
+      "file": "test/18-fix-r1-r2-r3-r4.test.mjs",
+      "acceptanceItems": [],
+      "result": "passed",
+      "command": "node tools/run-tests.mjs",
+      "durationMs": 252,
+      "mocked": true,
+      "mockedScope": "fake child process (fixtures/fake-runner.mjs): success, failure, timeout, cancellation, descendants, large output and secret fixtures — no model call and no real DSH run",
+      "failureMessage": null
+    },
+    {
+      "name": "R3 an unfinalised recovered record is a declared boundary, never a silent success",
+      "file": "test/18-fix-r1-r2-r3-r4.test.mjs",
+      "acceptanceItems": [],
+      "result": "passed",
+      "command": "node tools/run-tests.mjs",
+      "durationMs": 1267,
+      "mocked": true,
+      "mockedScope": "fake child process (fixtures/fake-runner.mjs): success, failure, timeout, cancellation, descendants, large output and secret fixtures — no model call and no real DSH run",
+      "failureMessage": null
+    },
+    {
+      "name": "R3 a restart reads the same verified output",
+      "file": "test/18-fix-r1-r2-r3-r4.test.mjs",
+      "acceptanceItems": [],
+      "result": "passed",
+      "command": "node tools/run-tests.mjs",
+      "durationMs": 233,
+      "mocked": true,
+      "mockedScope": "fake child process (fixtures/fake-runner.mjs): success, failure, timeout, cancellation, descendants, large output and secret fixtures — no model call and no real DSH run",
+      "failureMessage": null
+    },
+    {
+      "name": "R4 a running job reports live counters and truncation flags that agree with its page",
+      "file": "test/18-fix-r1-r2-r3-r4.test.mjs",
+      "acceptanceItems": [],
+      "result": "passed",
+      "command": "node tools/run-tests.mjs",
+      "durationMs": 115,
+      "mocked": true,
+      "mockedScope": "fake child process (fixtures/fake-runner.mjs): success, failure, timeout, cancellation, descendants, large output and secret fixtures — no model call and no real DSH run",
+      "failureMessage": null
+    },
+    {
+      "name": "R4 live raw bytes count an incomplete line while nothing is stored yet",
+      "file": "test/18-fix-r1-r2-r3-r4.test.mjs",
+      "acceptanceItems": [],
+      "result": "passed",
+      "command": "node tools/run-tests.mjs",
+      "durationMs": 117,
+      "mocked": true,
+      "mockedScope": "fake child process (fixtures/fake-runner.mjs): success, failure, timeout, cancellation, descendants, large output and secret fixtures — no model call and no real DSH run",
+      "failureMessage": null
+    },
+    {
+      "name": "R4 terminal and restart views match the live view and the persisted record",
+      "file": "test/18-fix-r1-r2-r3-r4.test.mjs",
+      "acceptanceItems": [],
+      "result": "passed",
+      "command": "node tools/run-tests.mjs",
+      "durationMs": 650,
+      "mocked": true,
+      "mockedScope": "fake child process (fixtures/fake-runner.mjs): success, failure, timeout, cancellation, descendants, large output and secret fixtures — no model call and no real DSH run",
+      "failureMessage": null
+    },
+    {
+      "name": "R1-05 an overflow caused by redaction expansion keeps the note after every retained byte",
+      "file": "test/19-fix-r1-05.test.mjs",
+      "acceptanceItems": [],
+      "result": "passed",
+      "command": "node tools/run-tests.mjs",
+      "durationMs": 7,
+      "mocked": true,
+      "mockedScope": "fake child process (fixtures/fake-runner.mjs): success, failure, timeout, cancellation, descendants, large output and secret fixtures — no model call and no real DSH run",
+      "failureMessage": null
+    },
+    {
+      "name": "R1-05 every chunk shape and UTF-8 boundary keeps the canonical layout",
+      "file": "test/19-fix-r1-05.test.mjs",
+      "acceptanceItems": [],
+      "result": "passed",
+      "command": "node tools/run-tests.mjs",
+      "durationMs": 16,
+      "mocked": true,
+      "mockedScope": "fake child process (fixtures/fake-runner.mjs): success, failure, timeout, cancellation, descendants, large output and secret fixtures — no model call and no real DSH run",
+      "failureMessage": null
+    },
+    {
+      "name": "R1-05 a truncated job result equals the retained bytes on disk, page by page",
+      "file": "test/19-fix-r1-05.test.mjs",
+      "acceptanceItems": [],
+      "result": "passed",
+      "command": "node tools/run-tests.mjs",
+      "durationMs": 138,
+      "mocked": true,
+      "mockedScope": "fake child process (fixtures/fake-runner.mjs): success, failure, timeout, cancellation, descendants, large output and secret fixtures — no model call and no real DSH run",
+      "failureMessage": null
+    },
+    {
+      "name": "R1-05 a body line that looks exactly like a note is preserved in a non-truncated log",
+      "file": "test/19-fix-r1-05.test.mjs",
+      "acceptanceItems": [],
+      "result": "passed",
+      "command": "node tools/run-tests.mjs",
+      "durationMs": 99,
+      "mocked": true,
+      "mockedScope": "fake child process (fixtures/fake-runner.mjs): success, failure, timeout, cancellation, descendants, large output and secret fixtures — no model call and no real DSH run",
+      "failureMessage": null
+    },
+    {
+      "name": "R1-05 a pre-R1-05 interleaved note is accepted without stripping body text",
+      "file": "test/19-fix-r1-05.test.mjs",
+      "acceptanceItems": [],
+      "result": "passed",
+      "command": "node tools/run-tests.mjs",
+      "durationMs": 101,
+      "mocked": true,
+      "mockedScope": "fake child process (fixtures/fake-runner.mjs): success, failure, timeout, cancellation, descendants, large output and secret fixtures — no model call and no real DSH run",
+      "failureMessage": null
+    },
+    {
+      "name": "R1-05 the note locator refuses ambiguous or damaged layouts",
+      "file": "test/19-fix-r1-05.test.mjs",
+      "acceptanceItems": [],
+      "result": "passed",
+      "command": "node tools/run-tests.mjs",
+      "durationMs": 0,
+      "mocked": true,
+      "mockedScope": "fake child process (fixtures/fake-runner.mjs): success, failure, timeout, cancellation, descendants, large output and secret fixtures — no model call and no real DSH run",
+      "failureMessage": null
+    },
+    {
+      "name": "R1-05 damaged truncated logs are refused and never rewrite the job status",
+      "file": "test/19-fix-r1-05.test.mjs",
+      "acceptanceItems": [],
+      "result": "passed",
+      "command": "node tools/run-tests.mjs",
+      "durationMs": 98,
+      "mocked": true,
+      "mockedScope": "fake child process (fixtures/fake-runner.mjs): success, failure, timeout, cancellation, descendants, large output and secret fixtures — no model call and no real DSH run",
+      "failureMessage": null
+    },
+    {
+      "name": "R2-01 every Authorization scheme is redacted while the header stays readable",
+      "file": "test/20-fix-r2.test.mjs",
+      "acceptanceItems": [],
+      "result": "passed",
+      "command": "node tools/run-tests.mjs",
+      "durationMs": 2,
+      "mocked": true,
+      "mockedScope": "fake child process (fixtures/fake-runner.mjs): success, failure, timeout, cancellation, descendants, large output and secret fixtures — no model call and no real DSH run",
+      "failureMessage": null
+    },
+    {
+      "name": "R2-01 scheme matching is case-insensitive and the Bearer/Basic control group still works",
+      "file": "test/20-fix-r2.test.mjs",
+      "acceptanceItems": [],
+      "result": "passed",
+      "command": "node tools/run-tests.mjs",
+      "durationMs": 0,
+      "mocked": true,
+      "mockedScope": "fake child process (fixtures/fake-runner.mjs): success, failure, timeout, cancellation, descendants, large output and secret fixtures — no model call and no real DSH run",
+      "failureMessage": null
+    },
+    {
+      "name": "R2-01 a header split across chunks is still redacted (streaming buffer)",
+      "file": "test/20-fix-r2.test.mjs",
+      "acceptanceItems": [],
+      "result": "passed",
+      "command": "node tools/run-tests.mjs",
+      "durationMs": 1,
+      "mocked": true,
+      "mockedScope": "fake child process (fixtures/fake-runner.mjs): success, failure, timeout, cancellation, descendants, large output and secret fixtures — no model call and no real DSH run",
+      "failureMessage": null
+    },
+    {
+      "name": "R2-01 non-credential text is never rewritten by the Authorization rule",
+      "file": "test/20-fix-r2.test.mjs",
+      "acceptanceItems": [],
+      "result": "passed",
+      "command": "node tools/run-tests.mjs",
+      "durationMs": 0,
+      "mocked": true,
+      "mockedScope": "fake child process (fixtures/fake-runner.mjs): success, failure, timeout, cancellation, descendants, large output and secret fixtures — no model call and no real DSH run",
+      "failureMessage": null
+    },
+    {
+      "name": "R2-02 audit.exclude extends the built-in deny set instead of replacing it",
+      "file": "test/20-fix-r2.test.mjs",
+      "acceptanceItems": [],
+      "result": "passed",
+      "command": "node tools/run-tests.mjs",
+      "durationMs": 21,
+      "mocked": true,
+      "mockedScope": "fake child process (fixtures/fake-runner.mjs): success, failure, timeout, cancellation, descendants, large output and secret fixtures — no model call and no real DSH run",
+      "failureMessage": null
+    },
+    {
+      "name": "R2-02 audit.include cannot re-admit hard-denied material, and non-conflicting includes load",
+      "file": "test/20-fix-r2.test.mjs",
+      "acceptanceItems": [],
+      "result": "passed",
+      "command": "node tools/run-tests.mjs",
+      "durationMs": 15,
+      "mocked": true,
+      "mockedScope": "fake child process (fixtures/fake-runner.mjs): success, failure, timeout, cancellation, descendants, large output and secret fixtures — no model call and no real DSH run",
+      "failureMessage": null
+    },
+    {
+      "name": "R2-02 the effective audit policy reaches the job record and the snapshot findings",
+      "file": "test/20-fix-r2.test.mjs",
+      "acceptanceItems": [],
+      "result": "passed",
+      "command": "node tools/run-tests.mjs",
+      "durationMs": 150,
+      "mocked": true,
+      "mockedScope": "fake child process (fixtures/fake-runner.mjs): success, failure, timeout, cancellation, descendants, large output and secret fixtures — no model call and no real DSH run",
+      "failureMessage": null
+    },
+    {
+      "name": "R2-03 a GBK task file is refused before acceptance and no runner is started",
+      "file": "test/20-fix-r2.test.mjs",
+      "acceptanceItems": [],
+      "result": "passed",
+      "command": "node tools/run-tests.mjs",
+      "durationMs": 116,
+      "mocked": true,
+      "mockedScope": "fake child process (fixtures/fake-runner.mjs): success, failure, timeout, cancellation, descendants, large output and secret fixtures — no model call and no real DSH run",
+      "failureMessage": null
+    },
+    {
+      "name": "R2-03 malformed UTF-8 sequences are refused: truncated multi-byte, lone continuation, overlong",
+      "file": "test/20-fix-r2.test.mjs",
+      "acceptanceItems": [],
+      "result": "passed",
+      "command": "node tools/run-tests.mjs",
+      "durationMs": 117,
+      "mocked": true,
+      "mockedScope": "fake child process (fixtures/fake-runner.mjs): success, failure, timeout, cancellation, descendants, large output and secret fixtures — no model call and no real DSH run",
+      "failureMessage": null
+    },
+    {
+      "name": "R2-03 an accepted copy always hashes to the recorded SHA-256 (inline, pointer, BOM, Chinese)",
+      "file": "test/20-fix-r2.test.mjs",
+      "acceptanceItems": [],
+      "result": "passed",
+      "command": "node tools/run-tests.mjs",
+      "durationMs": 601,
+      "mocked": true,
+      "mockedScope": "fake child process (fixtures/fake-runner.mjs): success, failure, timeout, cancellation, descendants, large output and secret fixtures — no model call and no real DSH run",
+      "failureMessage": null
+    },
+    {
+      "name": "R2-03 a legal UTF-8 file with a BOM is accepted, never silently re-encoded",
+      "file": "test/20-fix-r2.test.mjs",
+      "acceptanceItems": [],
+      "result": "passed",
+      "command": "node tools/run-tests.mjs",
+      "durationMs": 150,
+      "mocked": true,
+      "mockedScope": "fake child process (fixtures/fake-runner.mjs): success, failure, timeout, cancellation, descendants, large output and secret fixtures — no model call and no real DSH run",
+      "failureMessage": null
+    },
+    {
+      "name": "R2-04 a SPAWN_FAILED message keeps its code and context but loses configured values",
+      "file": "test/20-fix-r2.test.mjs",
+      "acceptanceItems": [],
+      "result": "passed",
+      "command": "node tools/run-tests.mjs",
+      "durationMs": 116,
+      "mocked": true,
+      "mockedScope": "fake child process (fixtures/fake-runner.mjs): success, failure, timeout, cancellation, descendants, large output and secret fixtures — no model call and no real DSH run",
+      "failureMessage": null
+    },
+    {
+      "name": "R2-04 a failed audit job redacts findings in the view, the record and the audit report",
+      "file": "test/20-fix-r2.test.mjs",
+      "acceptanceItems": [],
+      "result": "passed",
+      "command": "node tools/run-tests.mjs",
+      "durationMs": 116,
+      "mocked": true,
+      "mockedScope": "fake child process (fixtures/fake-runner.mjs): success, failure, timeout, cancellation, descendants, large output and secret fixtures — no model call and no real DSH run",
+      "failureMessage": null
+    },
+    {
+      "name": "R2-04 the logger redacts nested diagnostic fields, not just top-level strings",
+      "file": "test/20-fix-r2.test.mjs",
+      "acceptanceItems": [],
+      "result": "passed",
+      "command": "node tools/run-tests.mjs",
+      "durationMs": 1,
+      "mocked": true,
+      "mockedScope": "fake child process (fixtures/fake-runner.mjs): success, failure, timeout, cancellation, descendants, large output and secret fixtures — no model call and no real DSH run",
+      "failureMessage": null
+    },
+    {
+      "name": "R2-05 the MCP schema and the server agree on the timeout window",
+      "file": "test/20-fix-r2.test.mjs",
+      "acceptanceItems": [],
+      "result": "passed",
+      "command": "node tools/run-tests.mjs",
+      "durationMs": 0,
+      "mocked": true,
+      "mockedScope": "fake child process (fixtures/fake-runner.mjs): success, failure, timeout, cancellation, descendants, large output and secret fixtures — no model call and no real DSH run",
+      "failureMessage": null
+    },
+    {
+      "name": "R2-05 loadConfig refuses a limits block that cannot be expressed inside 1-3600",
+      "file": "test/20-fix-r2.test.mjs",
+      "acceptanceItems": [],
+      "result": "passed",
+      "command": "node tools/run-tests.mjs",
+      "durationMs": 25,
+      "mocked": true,
+      "mockedScope": "fake child process (fixtures/fake-runner.mjs): success, failure, timeout, cancellation, descendants, large output and secret fixtures — no model call and no real DSH run",
+      "failureMessage": null
+    },
+    {
+      "name": "R2-05 JobManager enforces 1-3600 on the direct path, without starting a runner",
+      "file": "test/20-fix-r2.test.mjs",
+      "acceptanceItems": [],
+      "result": "passed",
+      "command": "node tools/run-tests.mjs",
+      "durationMs": 125,
+      "mocked": true,
+      "mockedScope": "fake child process (fixtures/fake-runner.mjs): success, failure, timeout, cancellation, descendants, large output and secret fixtures — no model call and no real DSH run",
+      "failureMessage": null
+    },
+    {
+      "name": "R2-06 quoted, serialized and short header values are credentials, prose remains readable",
+      "file": "test/21-fix-r2-followup.test.mjs",
+      "acceptanceItems": [],
+      "result": "passed",
+      "command": "node tools/run-tests.mjs",
+      "durationMs": 2,
+      "mocked": true,
+      "mockedScope": "fake child process (fixtures/fake-runner.mjs): success, failure, timeout, cancellation, descendants, large output and secret fixtures — no model call and no real DSH run",
+      "failureMessage": null
+    },
+    {
+      "name": "R2-06 byte-split capture, stdout/stderr disk, result and restart all mask quoted credentials",
+      "file": "test/21-fix-r2-followup.test.mjs",
+      "acceptanceItems": [],
+      "result": "passed",
+      "command": "node tools/run-tests.mjs",
+      "durationMs": 227,
+      "mocked": true,
+      "mockedScope": "fake child process (fixtures/fake-runner.mjs): success, failure, timeout, cancellation, descendants, large output and secret fixtures — no model call and no real DSH run",
+      "failureMessage": null
+    },
+    {
+      "name": "R2-06 failed-launch diagnostics mask quoted credentials without configured literals",
+      "file": "test/21-fix-r2-followup.test.mjs",
+      "acceptanceItems": [],
+      "result": "passed",
+      "command": "node tools/run-tests.mjs",
+      "durationMs": 234,
+      "mocked": true,
+      "mockedScope": "fake child process (fixtures/fake-runner.mjs): success, failure, timeout, cancellation, descendants, large output and secret fixtures — no model call and no real DSH run",
+      "failureMessage": null
+    },
+    {
+      "name": "reserved redaction marker is stable for repeated diagnostic gates and colliding short literals",
+      "file": "test/21-fix-r2-followup.test.mjs",
+      "acceptanceItems": [],
+      "result": "passed",
+      "command": "node tools/run-tests.mjs",
+      "durationMs": 1,
+      "mocked": true,
+      "mockedScope": "fake child process (fixtures/fake-runner.mjs): success, failure, timeout, cancellation, descendants, large output and secret fixtures — no model call and no real DSH run",
+      "failureMessage": null
+    },
+    {
+      "name": "R2-07 machine fields survive configured literal collision: completed",
+      "file": "test/21-fix-r2-followup.test.mjs",
+      "acceptanceItems": [],
+      "result": "passed",
+      "command": "node tools/run-tests.mjs",
+      "durationMs": 196,
+      "mocked": true,
+      "mockedScope": "fake child process (fixtures/fake-runner.mjs): success, failure, timeout, cancellation, descendants, large output and secret fixtures — no model call and no real DSH run",
+      "failureMessage": null
+    },
+    {
+      "name": "R2-07 machine fields survive configured literal collision: j",
+      "file": "test/21-fix-r2-followup.test.mjs",
+      "acceptanceItems": [],
+      "result": "passed",
+      "command": "node tools/run-tests.mjs",
+      "durationMs": 187,
+      "mocked": true,
+      "mockedScope": "fake child process (fixtures/fake-runner.mjs): success, failure, timeout, cancellation, descendants, large output and secret fixtures — no model call and no real DSH run",
+      "failureMessage": null
+    },
+    {
+      "name": "R2-07 machine fields survive configured literal collision: impl",
+      "file": "test/21-fix-r2-followup.test.mjs",
+      "acceptanceItems": [],
+      "result": "passed",
+      "command": "node tools/run-tests.mjs",
+      "durationMs": 198,
+      "mocked": true,
+      "mockedScope": "fake child process (fixtures/fake-runner.mjs): success, failure, timeout, cancellation, descendants, large output and secret fixtures — no model call and no real DSH run",
+      "failureMessage": null
+    },
+    {
+      "name": "R2-07 machine fields survive configured literal collision: fake",
+      "file": "test/21-fix-r2-followup.test.mjs",
+      "acceptanceItems": [],
+      "result": "passed",
+      "command": "node tools/run-tests.mjs",
+      "durationMs": 197,
+      "mocked": true,
+      "mockedScope": "fake child process (fixtures/fake-runner.mjs): success, failure, timeout, cancellation, descendants, large output and secret fixtures — no model call and no real DSH run",
+      "failureMessage": null
+    },
+    {
+      "name": "R2-07 machine fields survive configured literal collision: inline",
+      "file": "test/21-fix-r2-followup.test.mjs",
+      "acceptanceItems": [],
+      "result": "passed",
+      "command": "node tools/run-tests.mjs",
+      "durationMs": 251,
+      "mocked": true,
+      "mockedScope": "fake child process (fixtures/fake-runner.mjs): success, failure, timeout, cancellation, descendants, large output and secret fixtures — no model call and no real DSH run",
+      "failureMessage": null
+    },
+    {
+      "name": "R2-07 machine fields survive configured literal collision: 2026",
+      "file": "test/21-fix-r2-followup.test.mjs",
+      "acceptanceItems": [],
+      "result": "passed",
+      "command": "node tools/run-tests.mjs",
+      "durationMs": 202,
+      "mocked": true,
+      "mockedScope": "fake child process (fixtures/fake-runner.mjs): success, failure, timeout, cancellation, descendants, large output and secret fixtures — no model call and no real DSH run",
+      "failureMessage": null
+    },
+    {
+      "name": "R2-07 machine fields survive configured literal collision: 7ad3c2d6f810b60bcfffc5b60dffcf1fef5ffa3d67aa01d0820d639c9588f6de",
+      "file": "test/21-fix-r2-followup.test.mjs",
+      "acceptanceItems": [],
+      "result": "passed",
+      "command": "node tools/run-tests.mjs",
+      "durationMs": 250,
+      "mocked": true,
+      "mockedScope": "fake child process (fixtures/fake-runner.mjs): success, failure, timeout, cancellation, descendants, large output and secret fixtures — no model call and no real DSH run",
+      "failureMessage": null
+    },
+    {
+      "name": "R2-07 error code collision stays structural while diagnostic message is redacted",
+      "file": "test/21-fix-r2-followup.test.mjs",
+      "acceptanceItems": [],
+      "result": "passed",
+      "command": "node tools/run-tests.mjs",
+      "durationMs": 217,
+      "mocked": true,
+      "mockedScope": "fake child process (fixtures/fake-runner.mjs): success, failure, timeout, cancellation, descendants, large output and secret fixtures — no model call and no real DSH run",
+      "failureMessage": null
+    },
+    {
+      "name": "R2-07 audit record and report preserve identity, policy, paths and manifest digests",
+      "file": "test/21-fix-r2-followup.test.mjs",
+      "acceptanceItems": [],
+      "result": "passed",
+      "command": "node tools/run-tests.mjs",
+      "durationMs": 218,
+      "mocked": true,
+      "mockedScope": "fake child process (fixtures/fake-runner.mjs): success, failure, timeout, cancellation, descendants, large output and secret fixtures — no model call and no real DSH run",
+      "failureMessage": null
+    },
+    {
+      "name": "R2-07 cleanup codes remain exact while quoted diagnostic detail is redacted",
+      "file": "test/21-fix-r2-followup.test.mjs",
+      "acceptanceItems": [],
+      "result": "passed",
+      "command": "node tools/run-tests.mjs",
+      "durationMs": 197,
+      "mocked": true,
+      "mockedScope": "fake child process (fixtures/fake-runner.mjs): success, failure, timeout, cancellation, descendants, large output and secret fixtures — no model call and no real DSH run",
+      "failureMessage": null
+    },
+    {
+      "name": "R2-07 viewing older terminal diagnostics redacts them without rewriting the record",
+      "file": "test/21-fix-r2-followup.test.mjs",
+      "acceptanceItems": [],
+      "result": "passed",
+      "command": "node tools/run-tests.mjs",
+      "durationMs": 266,
+      "mocked": true,
+      "mockedScope": "fake child process (fixtures/fake-runner.mjs): success, failure, timeout, cancellation, descendants, large output and secret fixtures — no model call and no real DSH run",
+      "failureMessage": null
+    },
+    {
+      "name": "R4-01 simulated atomic replacement retries transient errors and preserves the old destination on exhaustion",
+      "file": "test/22-r4-persistence.test.mjs",
+      "acceptanceItems": [],
+      "result": "passed",
+      "command": "node tools/run-tests.mjs",
+      "durationMs": 241,
+      "mocked": true,
+      "mockedScope": "in-process controlled runner or targeted filesystem fault injection; no OS child or model call",
+      "failureMessage": null
+    },
+    {
+      "name": "R4-01 simulated initial acceptance write failure never starts a task",
+      "file": "test/22-r4-persistence.test.mjs",
+      "acceptanceItems": [],
+      "result": "passed",
+      "command": "node tools/run-tests.mjs",
+      "durationMs": 163,
+      "mocked": true,
+      "mockedScope": "in-process controlled runner or targeted filesystem fault injection; no OS child or model call",
+      "failureMessage": null
+    },
+    {
+      "name": "R4-01 simulated pre-spawn write exhaustion gives a readable failed outcome and no process",
+      "file": "test/22-r4-persistence.test.mjs",
+      "acceptanceItems": [],
+      "result": "passed",
+      "command": "node tools/run-tests.mjs",
+      "durationMs": 167,
+      "mocked": true,
+      "mockedScope": "in-process controlled runner or targeted filesystem fault injection; no OS child or model call",
+      "failureMessage": null
+    },
+    {
+      "name": "R4-01 simulated post-spawn write failure keeps the slot and cancel handle until a stop is observed",
+      "file": "test/22-r4-persistence.test.mjs",
+      "acceptanceItems": [],
+      "result": "passed",
+      "command": "node tools/run-tests.mjs",
+      "durationMs": 203,
+      "mocked": true,
+      "mockedScope": "in-process controlled runner or targeted filesystem fault injection; no OS child or model call",
+      "failureMessage": null
+    },
+    {
+      "name": "R4-01 simulated stopping write exhaustion cannot prevent killing an owned task",
+      "file": "test/22-r4-persistence.test.mjs",
+      "acceptanceItems": [],
+      "result": "passed",
+      "command": "node tools/run-tests.mjs",
+      "durationMs": 131,
+      "mocked": true,
+      "mockedScope": "in-process controlled runner or targeted filesystem fault injection; no OS child or model call",
+      "failureMessage": null
+    },
+    {
+      "name": "R4-01 simulated terminal write exhaustion exposes debt, blocks admission, then recovers without rerunning",
+      "file": "test/22-r4-persistence.test.mjs",
+      "acceptanceItems": [],
+      "result": "passed",
+      "command": "node tools/run-tests.mjs",
+      "durationMs": 217,
+      "mocked": true,
+      "mockedScope": "in-process controlled runner or targeted filesystem fault injection; no OS child or model call",
+      "failureMessage": null
+    },
+    {
+      "name": "R4-01 simulated permanent post-spawn write loss retains explicit durability debt and restart refuses an unknown child",
+      "file": "test/22-r4-persistence.test.mjs",
+      "acceptanceItems": [],
+      "result": "passed",
+      "command": "node tools/run-tests.mjs",
+      "durationMs": 382,
+      "mocked": true,
+      "mockedScope": "in-process controlled runner or targeted filesystem fault injection; no OS child or model call",
+      "failureMessage": null
+    },
+    {
+      "name": "R4-01 simulated restart with a durable spawn intent and missing pid conservatively blocks new work",
+      "file": "test/22-r4-persistence.test.mjs",
+      "acceptanceItems": [],
+      "result": "passed",
+      "command": "node tools/run-tests.mjs",
+      "durationMs": 166,
+      "mocked": true,
+      "mockedScope": "in-process controlled runner or targeted filesystem fault injection; no OS child or model call",
+      "failureMessage": null
+    },
+    {
+      "name": "R4-01 native Windows fake child: post-spawn state failure leaves the bridge alive and the child supervised",
+      "file": "test/22-r4-persistence.test.mjs",
+      "acceptanceItems": [],
+      "result": "passed",
+      "command": "node tools/run-tests.mjs",
+      "durationMs": 417,
+      "mocked": true,
+      "mockedScope": "native Windows processes and offline stdio where named; fixed fake child only; state-write faults injected where named; no DSH/model call",
+      "failureMessage": null
+    },
+    {
+      "name": "R4-01 native Windows fake child: terminal state failure leaves the bridge alive and the child supervised",
+      "file": "test/22-r4-persistence.test.mjs",
+      "acceptanceItems": [],
+      "result": "passed",
+      "command": "node tools/run-tests.mjs",
+      "durationMs": 216,
+      "mocked": true,
+      "mockedScope": "native Windows processes and offline stdio where named; fixed fake child only; state-write faults injected where named; no DSH/model call",
+      "failureMessage": null
+    },
+    {
+      "name": "R4-02 simulated lost-index controls and surviving missing record never duplicate a request",
+      "file": "test/23-r4-contracts.test.mjs",
+      "acceptanceItems": [],
+      "result": "passed",
+      "command": "node tools/run-tests.mjs",
+      "durationMs": 374,
+      "mocked": true,
+      "mockedScope": "in-process controlled runner or targeted filesystem fault injection; no OS child or model call",
+      "failureMessage": null
+    },
+    {
+      "name": "R4-02 pure shallow records are rejected while the supported missing-childIdentity legacy record stays readable",
+      "file": "test/23-r4-contracts.test.mjs",
+      "acceptanceItems": [],
+      "result": "passed",
+      "command": "node tools/run-tests.mjs",
+      "durationMs": 166,
+      "mocked": false,
+      "mockedScope": "pure functions or local filesystem checks; no subprocess/model call",
+      "failureMessage": null
+    },
+    {
+      "name": "R4-03 native offline stdio health redacts fake runner diagnostics without changing workspace paths",
+      "file": "test/23-r4-contracts.test.mjs",
+      "acceptanceItems": [],
+      "result": "passed",
+      "command": "node tools/run-tests.mjs",
+      "durationMs": 551,
+      "mocked": true,
+      "mockedScope": "native Windows processes and offline stdio where named; fixed fake child only; state-write faults injected where named; no DSH/model call",
+      "failureMessage": null
+    },
+    {
+      "name": "R4-03 native offline stdio health redacts production runner diagnostics without changing workspace paths",
+      "file": "test/23-r4-contracts.test.mjs",
+      "acceptanceItems": [],
+      "result": "passed",
+      "command": "node tools/run-tests.mjs",
+      "durationMs": 516,
+      "mocked": true,
+      "mockedScope": "native Windows processes and offline stdio where named; fixed fake child only; state-write faults injected where named; no DSH/model call",
+      "failureMessage": null
+    },
+    {
+      "name": "R4-04 pure Windows deny rules prune case-variant directories, filter snapshots and refuse include conflicts",
+      "file": "test/23-r4-contracts.test.mjs",
+      "acceptanceItems": [],
+      "result": "passed",
+      "command": "node tools/run-tests.mjs",
+      "durationMs": 24,
+      "mocked": false,
+      "mockedScope": "pure functions or local filesystem checks; no subprocess/model call",
+      "failureMessage": null
+    },
+    {
+      "name": "R4-05 pure JSON, nested/serialized strings and chunked capture redact credential values while keeping JSON readable",
+      "file": "test/23-r4-contracts.test.mjs",
+      "acceptanceItems": [],
+      "result": "passed",
+      "command": "node tools/run-tests.mjs",
+      "durationMs": 5,
+      "mocked": false,
+      "mockedScope": "pure functions or local filesystem checks; no subprocess/model call",
+      "failureMessage": null
+    },
+    {
+      "name": "R4-05 native offline MCP result and stdout/stderr logs redact JSON while accepted task bytes remain unchanged",
+      "file": "test/23-r4-contracts.test.mjs",
+      "acceptanceItems": [],
+      "result": "passed",
+      "command": "node tools/run-tests.mjs",
+      "durationMs": 653,
+      "mocked": true,
+      "mockedScope": "native Windows processes and offline stdio where named; fixed fake child only; state-write faults injected where named; no DSH/model call",
+      "failureMessage": null
+    },
+    {
+      "name": "R4-06 native offline audit detects a newly created junction without following its target",
+      "file": "test/23-r4-contracts.test.mjs",
+      "acceptanceItems": [],
+      "result": "passed",
+      "command": "node tools/run-tests.mjs",
+      "durationMs": 769,
+      "mocked": true,
+      "mockedScope": "native Windows processes and offline stdio where named; fixed fake child only; state-write faults injected where named; no DSH/model call",
+      "failureMessage": null
+    },
+    {
+      "name": "R4-08 injected stale stat cannot bypass bounded task reads; exact cap succeeds and cap+1 does not start",
+      "file": "test/23-r4-contracts.test.mjs",
+      "acceptanceItems": [],
+      "result": "passed",
+      "command": "node tools/run-tests.mjs",
+      "durationMs": 134,
+      "mocked": true,
+      "mockedScope": "in-process controlled runner or targeted filesystem fault injection; no OS child or model call",
+      "failureMessage": null
+    },
+    {
+      "name": "R4-08 native offline MCP refuses null/noninteger/out-of-range timeouts and accepts omitted/valid integer",
+      "file": "test/23-r4-contracts.test.mjs",
+      "acceptanceItems": [],
+      "result": "passed",
+      "command": "node tools/run-tests.mjs",
+      "durationMs": 815,
+      "mocked": true,
+      "mockedScope": "native Windows processes and offline stdio where named; fixed fake child only; state-write faults injected where named; no DSH/model call",
+      "failureMessage": null
+    },
+    {
+      "name": "R4-07 native isolated quick-start copy builds, generates a confined config and runs all five tools with fake only",
+      "file": "test/23-r4-contracts.test.mjs",
+      "acceptanceItems": [],
+      "result": "passed",
+      "command": "node tools/run-tests.mjs",
+      "durationMs": 2244,
+      "mocked": true,
+      "mockedScope": "native Windows processes and offline stdio where named; fixed fake child only; state-write faults injected where named; no DSH/model call",
+      "failureMessage": null
+    },
+    {
+      "name": "R4 V-01 simulated exit before deadline completes; an exit0 after timeout stays timed_out with an ordered timeline",
+      "file": "test/24-r4-audit-risks.test.mjs",
+      "acceptanceItems": [],
+      "result": "passed",
+      "command": "node tools/run-tests.mjs",
+      "durationMs": 1768,
+      "mocked": true,
+      "mockedScope": "in-process controlled runner or targeted filesystem fault injection; no OS child or model call",
+      "failureMessage": null
+    },
+    {
+      "name": "R4 V-02 native spawn-before-pid stale-lease takeover refuses a second task while the first fake child is alive",
+      "file": "test/24-r4-audit-risks.test.mjs",
+      "acceptanceItems": [],
+      "result": "passed",
+      "command": "node tools/run-tests.mjs",
+      "durationMs": 612,
+      "mocked": true,
+      "mockedScope": "native Windows processes and offline stdio where named; fixed fake child only; state-write faults injected where named; no DSH/model call",
+      "failureMessage": null
+    }
+  ]
+}

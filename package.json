@@ -1,0 +1,29 @@
+{
+  "name": "dsh-codex-bridge",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Local stdio MCP bridge that lets Codex launch, supervise and audit DeepSeek Harness (DSH) headless jobs.",
+  "type": "module",
+  "main": "dist/src/index.js",
+  "engines": {
+    "node": ">=22.19.0"
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "clean": "node -e \"require('fs').rmSync('dist',{recursive:true,force:true})\"",
+    "start": "node dist/src/index.js --config config/bridge.config.json",
+    "setup:selftest": "node tools/setup-selftest.mjs",
+    "test": "node tools/run-tests.mjs",
+    "test:units": "node test/00-units.test.mjs",
+    "report:manifest": "node tools/source-manifest.mjs",
+    "report:results": "node tools/collect-test-results.mjs"
+  },
+  "license": "UNLICENSED",
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "1.32.1"
+  },
+  "devDependencies": {
+    "@types/node": "24.10.1",
+    "typescript": "5.9.3"
+  }
+}

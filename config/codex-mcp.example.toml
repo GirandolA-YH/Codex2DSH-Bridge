@@ -1,0 +1,42 @@
+# Codex MCP configuration example (inspection only — nothing writes this for you).
+#
+# Append the block below to Codex's own config file
+# (`%USERPROFILE%\.codex\config.toml`, or `~/.codex/config.toml`) by hand.
+# This package never edits, enables or restarts another application's config.
+#
+# `command`/`args` must be absolute so the server does not depend on the terminal's
+# current directory. Use the node.exe that runs the rest of your tooling, and the
+# built bridge entry point.
+
+[mcp_servers.dsh_bridge]
+command = 'C:\Program Files\nodejs\node.exe'
+args = [
+  'C:\Projects\Codex2DSH-Bridge\dist\src\index.js',
+  '--config',
+  'C:\Projects\Codex2DSH-Bridge\config\bridge.config.json',
+]
+# The bridge answers initialize/tools/list immediately, but a cold start still has
+# to load the job store; 30 s is generous and avoids client-side retries.
+startup_timeout_sec = 30
+
+# ---------------------------------------------------------------------------
+# Desktop (0.2.0-rc.2) launcher variant — optional, only if you want the bridge
+# to drive the DSH that ships inside the desktop app instead of the npm CLI.
+# Set it in the bridge's own config file, not here; the MCP block above is
+# unchanged. See config/bridge.config.desktop.json.
+#
+#   "command": "C:\Users\<you>\AppData\Local\Programs\DeepSeek Harness\DeepSeek Harness.exe"
+#   "argsPrefix": ["--expose-internals",
+#                  "C:\Users\<you>\AppData\Local\Programs\DeepSeek Harness\resources\app.asar\dsh\node_modules\@deepseek-ai\dsh\lib\bin.js"]
+#   "env": { "ELECTRON_RUN_AS_NODE": "1" }
+#
+# ---------------------------------------------------------------------------
+# Suggested Codex-side usage (see README, section "Token 与成本"):
+#   dsh_health  → confirm runner.available and the configured workspaces
+#   dsh_submit  → requestId=<plan-item>-<round>, mode=implement|fix|audit
+#   dsh_status  → poll until job.terminal
+#   dsh_result  → read page by page; page.totalChars tells you how much exists
+#   dsh_cancel  → only for abandoned work; it is idempotent
+#
+# No credentials belong in this file or in the bridge config: the child inherits
+# the DSH home it already uses. Never paste an API key into a task file.

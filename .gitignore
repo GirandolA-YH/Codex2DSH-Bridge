@@ -1,0 +1,54 @@
+# dependencies and build output
+node_modules/
+dist/
+
+# runtime job state (job records, frozen task copies, redacted logs)
+state/
+
+# per-test sandboxes and debug logs
+test/.tmp/
+test-run.log
+reports/dbg-*.log
+
+# generated run artifacts that are not deliverables
+reports/junit.xml
+reports/last-run.json
+
+# fixture directories created at run time by the copied Codex evidence scripts
+audits/codex-round-01/probe-fixtures-*/
+audits/codex-round-01/host-fixtures-*/
+audits/codex-round-02/boundary-fixtures-*/
+audits/codex-round-02/probe-fixtures-*/
+audits/codex-round-02/process-fixtures-*/
+
+reports/last-full.log
+audits/codex-round-03/*-fixtures-*/
+
+# clean-checkout verification output (regenerated on demand)
+reports/clean-checkout-verification.json
+
+audits/codex-round-04/*-fixtures-*/
+
+audits/codex-round-05/*-fixtures-*/
+
+audits/codex-round-06/*-fixtures-*/
+
+
+# Local configuration, credentials and generated self-test workspaces
+config/bridge.config.json
+config/*.real.json
+config/*.production.json
+sandbox/
+.codex/
+.dsh/
+.env
+.env.*
+*.pem
+*.key
+*.pfx
+*.p12
+
+# Generated offline probe evidence stays local
+reports/r4-exit-order.json
+reports/r4-spawn-window.json
+reports/asar-snapshot/

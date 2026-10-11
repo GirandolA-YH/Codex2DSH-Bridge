@@ -1,0 +1,10 @@
+# Keep the delivered bytes reproducible: every text file is stored and checked
+# out with LF, so a clean checkout hashes exactly like the delivered tree
+# (FIX-003 F3-04).
+* text=auto eol=lf
+
+# Binary artefacts are never converted.
+*.png binary
+*.ico binary
+*.zip binary
+*.exe binary
