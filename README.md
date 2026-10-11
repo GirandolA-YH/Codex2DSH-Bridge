@@ -1,5 +1,11 @@
 # Codex2DSH-Bridge
 
+## 创作者说明
+
+本插件制作者没有程序开发背景，使用 Codex 与 DSH 共同构建了该插件。
+
+代码内容仅通过 Agent 审计，未经过专业开发者的人工代码审计。对于后续发现的 bug 及 GitHub Issues，建议使用者自行使用 Agent 进行修改和开发。
+
 > **先读[中文阅读指南](中文阅读指南.md)**：21个核心源码文件含中文注释。本仓库发布R4源码、离线测试和可填写配置示例。当前交付为需构建的MCP服务源码；尚未制作可一键安装的Codex插件包。
 
 本地 stdio **MCP 服务**：让 Codex 主动拉起 DSH（DeepSeek Harness）headless 作业、等待、读取结果、必要时取消。Codex 负责规划与验收，DSH 负责实施；本桥不替任何一方作判定。
@@ -232,4 +238,4 @@ reports/        IMPLEMENTATION-REPORT.md、test-results.json、source-manifest.j
 
 生产示例中的 `YOUR_USER` 和 `C:\Projects\Codex2DSH-Bridge` 都是占位值，须按本机目录填写。不要直接运行生产模板。自动孤儿清理保持关闭，DSH模型与凭据沿用DSH自身配置。先用离线自测确认安装，再在Codex中确认五个工具可见并调用 `dsh_health`。真实作业需要单独明确任务范围、预算及验收标准，失败不会自动付费重试。
 
-本仓库保留原 `UNLICENSED` 声明，尚未选择开源许可证；公开可见本身不代表授予开源许可。
+本项目采用 [MIT License](LICENSE) 开源。使用、修改和分发时，请保留许可证中的版权及许可声明。第三方依赖仍遵循各自的许可证。

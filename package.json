@@ -18,7 +18,7 @@
     "report:manifest": "node tools/source-manifest.mjs",
     "report:results": "node tools/collect-test-results.mjs"
   },
-  "license": "UNLICENSED",
+  "license": "MIT",
   "dependencies": {
     "@modelcontextprotocol/sdk": "1.32.1"
   },

@@ -1,10 +1,10 @@
 {
   "schema": "dsh-codex-bridge/source-manifest/v1",
-  "generatedAt": "2026-10-11T02:34:47.020Z",
+  "generatedAt": "2026-10-11T02:51:53.202Z",
   "algorithm": "sha256",
   "root": ".",
-  "fileCount": 69,
-  "digest": "d0059f96a5d6af9a12965eed56507da57a1a8cbbbdf2959d842b3227546ad09f",
+  "fileCount": 70,
+  "digest": "fffefb4838bd177c71522a2df189934066489e65440e4cbeaf7024b0749c6840",
   "note": "Hashes cover the delivered source, tests, fixtures, config samples and reports. dist/, node_modules/, state/ and test/.tmp/ are build or runtime artifacts and are excluded.",
   "files": [
     {
@@ -18,9 +18,14 @@
       "sha256": "3b2e5f1084b12fb86f3919fca948f8862b57a3aa23096c6c063fea970e1b353f"
     },
     {
+      "path": "LICENSE",
+      "size": 1069,
+      "sha256": "e2f727584055434e5f53ee32e895ab93ddd466117c85248d424d99fa4b0b870e"
+    },
+    {
       "path": "README.md",
-      "size": 30945,
-      "sha256": "4823eeb9692cabb9572f49ee4fc9745cce6d5ffeabc63063733ab5c8d6b4f7b4"
+      "size": 31303,
+      "sha256": "2c55ec40bcee23da9739ec0fab19df21824a46b771817bcd8cc3b4b85029acd5"
     },
     {
       "path": "config/bridge.config.desktop.json",
@@ -54,13 +59,13 @@
     },
     {
       "path": "package-lock.json",
-      "size": 43673,
-      "sha256": "21bb29ecaadc91b25223a2c5d792378cba8ce05de350f588f7e1d270cf1e210f"
+      "size": 43666,
+      "sha256": "5c3d142f610300aa232ff07c740bcefd1605c2e3f2f786ae1e077247c620fda5"
     },
     {
       "path": "package.json",
-      "size": 949,
-      "sha256": "0dee3637fe077129b7168b863c82c25722f2d788e9d2d8af8ee91341a660baa6"
+      "size": 942,
+      "sha256": "93ddcb6b7e899fa818986f1c0c701629adeed6169a5e5678aceb266698adc0fc"
     },
     {
       "path": "reports/IMPLEMENTATION-REPORT.md",
@@ -344,8 +349,8 @@
     },
     {
       "path": "tools/source-manifest.mjs",
-      "size": 3764,
-      "sha256": "38ffd77e93181dfd59be9ae804f406b7655fec031bd75e5785cdb25b6385f23b"
+      "size": 3775,
+      "sha256": "41b17b7e52401d4402280fc45821af3cd010b3b8f774b1b0c6e157942c8a3915"
     },
     {
       "path": "tsconfig.json",

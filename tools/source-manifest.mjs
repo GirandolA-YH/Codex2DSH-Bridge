@@ -16,7 +16,7 @@ import { fileURLToPath } from 'node:url';
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const OUTPUT = path.join(ROOT, 'reports', 'source-manifest.json');
 
-const INCLUDE_FILES = ['README.md', 'package.json', 'package-lock.json', 'tsconfig.json', '.gitignore', '.gitattributes'];
+const INCLUDE_FILES = ['README.md', 'LICENSE', 'package.json', 'package-lock.json', 'tsconfig.json', '.gitignore', '.gitattributes'];
 const INCLUDE_DIRS = ['src', 'test', 'fixtures', 'config', 'tools', 'audits', 'reports'];
 const EXCLUDE_DIR_NAMES = new Set(['node_modules', 'dist', 'state', '.tmp', 'logs', '.git']);
 const EXCLUDE_FILE_NAMES = new Set(['source-manifest.json', 'junit.xml', 'last-run.json', 'clean-checkout-verification.json', 'r4-exit-order.json', 'r4-spawn-window.json']);
