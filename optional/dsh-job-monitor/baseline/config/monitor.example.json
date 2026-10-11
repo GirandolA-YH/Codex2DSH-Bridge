@@ -1,0 +1,37 @@
+{
+  "schema": "dsh-monitor/config/v1",
+  "note": [
+    "示例配置：复制后按本机实际情况修改。所有路径只在服务端读取，浏览器无法传入路径。",
+    "stateRoot 为只读桥状态根；面板不会写入它。",
+    "workspaceMap 决定“交付与测试信息”能看到哪个目录，未配置时页面显示“未配置交付目录”。",
+    "names / workspaceNames 只是本地展示名映射，不读取 task 正文。"
+  ],
+  "stateRoot": "REPLACE/with/bridge/state/root",
+  "acceptanceLedger": "REPLACE/with/acceptance/ledger.json",
+  "port": 4178,
+  "host": "127.0.0.1",
+  "refreshIntervalMs": 5000,
+  "staleHeartbeatMs": 30000,
+  "limits": {
+    "maxJobs": 50,
+    "maxScanEntries": 300,
+    "maxScanDepth": 4,
+    "maxJobJsonBytes": 262144,
+    "maxLedgerBytes": 524288,
+    "maxRecentFiles": 12
+  },
+  "workspaceMap": {
+    "byWorkspaceId": {
+      "ws-demo": "REPLACE/with/readonly/delivery/dir"
+    },
+    "byJobId": {
+      "job-0000000000000000": "REPLACE/with/readonly/delivery/dir"
+    },
+    "names": {
+      "job-0000000000000000": "示例展示名"
+    },
+    "workspaceNames": {
+      "ws-demo": "示例展示名"
+    }
+  }
+}

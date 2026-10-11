@@ -1,0 +1,7 @@
+# 演示夹具按需生成（scripts/make-demo-fixture.mjs / --demo 使用系统临时目录）
+fixtures/demo-state/
+# 临时/测试残留
+.tmp/
+.tmp-*/
+test/.tmp/
+*.tmp

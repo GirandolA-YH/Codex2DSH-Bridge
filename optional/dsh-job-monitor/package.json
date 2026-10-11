@@ -1,0 +1,55 @@
+{
+  "name": "dsh-job-monitor",
+  "version": "0.1.0",
+  "type": "module",
+  "description": "DSH 右侧栏的「作业监控」只读面板：复用 dsh-monitor 采样核心，经宿主同源路由读取桥状态，不新增监听端口",
+  "license": "MIT",
+  "main": "lib/index.js",
+  "exports": {
+    ".": "./lib/index.js",
+    "./client": "./lib/client.js",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "lib",
+    "host",
+    "config/monitor.example.json",
+    "baseline",
+    "README.md",
+    "LICENSE",
+    "test",
+    "AUDIT.md"
+  ],
+  "scripts": {
+    "test": "node test/run-fixtures.mjs",
+    "test:baseline": "node baseline/test/run-all.mjs",
+    "test:readonly": "node test/run-readonly-fixtures.mjs",
+    "test:without-config": "node test/run-embedded.mjs",
+    "test:regressions": "node test/publication-regressions.test.mjs",
+    "test:readonly:configured": "node test/readonly-recheck.mjs"
+  },
+  "engines": {
+    "node": ">=20.11.0"
+  },
+  "keywords": [
+    "dsh",
+    "dsh-plugin",
+    "monitor",
+    "read-only",
+    "job-monitor"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GirandolA-YH/Codex2DSH-Bridge.git",
+    "directory": "optional/dsh-job-monitor"
+  },
+  "dsh": {
+    "client": {
+      "platform": "web"
+    },
+    "manifestVersion": 1
+  },
+  "peerDependencies": {
+    "dsh-better-sidebar": "0.24.1"
+  }
+}

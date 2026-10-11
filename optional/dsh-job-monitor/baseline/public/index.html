@@ -1,0 +1,192 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="light" />
+    <title>DSH 作业监控（只读）</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <a class="skip-link" href="#detail">跳到作业详情</a>
+
+    <header class="topbar">
+      <div class="brand">
+        <h1>DSH 作业监控</h1>
+        <p class="brand-sub">本机只读面板 · 不拉起桥 · 不读日志原文</p>
+      </div>
+      <div class="topbar-status">
+        <span id="demo-badge" class="badge badge-demo" hidden>演示数据</span>
+        <span class="kv"><span class="kv-label">数据源</span> <code id="meta-root">—</code></span>
+        <span class="kv"><span class="kv-label">最近刷新</span> <time id="meta-refresh">—</time></span>
+        <span id="refresh-state" class="refresh-state" role="status" aria-live="polite">正在载入…</span>
+        <button id="refresh-now" type="button" class="ghost-button">立即刷新</button>
+      </div>
+    </header>
+
+    <div id="banner" class="banner" role="alert" hidden></div>
+    <div id="ledger-banner" class="banner banner-soft" hidden></div>
+
+    <main class="layout">
+      <section class="panel list-panel" aria-labelledby="list-title">
+        <div class="panel-head">
+          <h2 id="list-title">最近任务列表</h2>
+          <p id="list-meta" class="meta">—</p>
+        </div>
+        <div class="table-wrap">
+          <table class="jobs">
+            <caption class="visually-hidden">按创建时间倒序排列的桥作业</caption>
+            <thead>
+              <tr>
+                <th scope="col">任务名称</th>
+                <th scope="col">作业 ID</th>
+                <th scope="col">模式</th>
+                <th scope="col">状态</th>
+                <th scope="col">开始时间</th>
+                <th scope="col">已用 / 时限</th>
+              </tr>
+            </thead>
+            <tbody id="job-rows"></tbody>
+          </table>
+        </div>
+        <p id="list-empty" class="empty" hidden>没有找到作业。</p>
+        <div id="unreadable-block" class="sub-block" hidden>
+          <h3>损坏 / 不可读记录</h3>
+          <ul id="unreadable-list" class="records"></ul>
+        </div>
+        <ul id="list-notes" class="notes"></ul>
+      </section>
+
+      <section id="detail" class="panel detail-panel" aria-labelledby="detail-title" tabindex="-1">
+        <div class="panel-head">
+          <h2 id="detail-title">作业详情</h2>
+          <p id="detail-meta" class="meta">—</p>
+        </div>
+
+        <p id="detail-empty" class="empty">请选择左侧的一个作业。</p>
+
+        <div id="detail-body" hidden>
+          <div class="detail-head">
+            <div>
+              <p class="detail-name" id="job-name">—</p>
+              <p class="detail-id"><span class="kv-label">作业 ID</span> <code id="job-id">—</code></p>
+            </div>
+            <div class="detail-tags">
+              <span class="tag" id="job-mode">—</span>
+              <span class="tag" id="job-workspace">—</span>
+            </div>
+          </div>
+
+          <div class="status-pair">
+            <div class="status-card">
+              <p class="status-card-title">执行状态</p>
+              <p class="status-line">
+                <span class="badge" id="exec-badge">—</span>
+                <span id="exec-detail" class="status-note">—</span>
+              </p>
+              <p class="disclaimer" id="exec-disclaimer"></p>
+            </div>
+            <div class="status-card">
+              <p class="status-card-title">独立验收状态</p>
+              <p class="status-line">
+                <span class="badge" id="acc-badge">—</span>
+                <span id="acc-detail" class="status-note">—</span>
+              </p>
+              <p class="disclaimer">验收结论只来自操作者提供的独立账本，不由退出码、报告存在或日志文本推断。</p>
+            </div>
+          </div>
+
+          <div class="meter-block">
+            <div class="meter-head">
+              <span class="meter-label" id="meter-label-text">时限已用</span>
+              <span id="meter-text" class="meter-text">—</span>
+            </div>
+            <div
+              class="meter"
+              id="meter"
+              role="progressbar"
+              aria-labelledby="meter-label-text"
+              aria-valuemin="0"
+              aria-valuemax="100"
+              aria-valuenow="0"
+            >
+              <span id="meter-fill" class="meter-fill"></span>
+            </div>
+            <p id="meter-note" class="meta"></p>
+          </div>
+
+          <div class="times">
+            <div><span class="kv-label">创建</span> <time id="time-created">—</time></div>
+            <div><span class="kv-label">开始</span> <time id="time-started">—</time></div>
+            <div><span class="kv-label">结束</span> <time id="time-ended">—</time></div>
+            <div><span class="kv-label">进程退出码</span> <code id="text-exit">—</code></div>
+            <div><span class="kv-label">稳定错误码</span> <code id="text-errorcode">—</code> <span id="text-errorlabel" class="meta"></span></div>
+          </div>
+
+          <section class="sub-block" aria-labelledby="activity-title">
+            <h3 id="activity-title">最近活动（仅日志文件元数据）</h3>
+            <div class="table-wrap">
+              <table class="streams">
+                <thead>
+                  <tr>
+                    <th scope="col">日志流</th>
+                    <th scope="col">文件</th>
+                    <th scope="col">大小</th>
+                    <th scope="col">最后更新</th>
+                    <th scope="col">相对上次采样</th>
+                  </tr>
+                </thead>
+                <tbody id="activity-rows"></tbody>
+              </table>
+            </div>
+            <p id="activity-note" class="meta"></p>
+          </section>
+
+          <section class="sub-block" aria-labelledby="delivery-title">
+            <h3 id="delivery-title">交付与测试信息（工作目录文件元数据）</h3>
+            <p id="delivery-meta" class="meta">—</p>
+            <p id="delivery-test" class="meta">—</p>
+            <p id="delivery-note" class="meta"></p>
+            <div id="delivery-body" hidden>
+              <h4>最近更新的文件</h4>
+              <div class="table-wrap">
+                <table class="files">
+                  <thead>
+                    <tr>
+                      <th scope="col">相对路径</th>
+                      <th scope="col">大小</th>
+                      <th scope="col">修改时间</th>
+                    </tr>
+                  </thead>
+                  <tbody id="file-rows"></tbody>
+                </table>
+              </div>
+              <p id="files-empty" class="empty" hidden>允许范围内没有可显示的文件。</p>
+              <h4>报告出现情况</h4>
+              <ul id="report-list" class="records"></ul>
+            </div>
+          </section>
+
+          <section class="sub-block" aria-labelledby="notes-title">
+            <h3 id="notes-title">状态说明与限制</h3>
+            <ul id="detail-notes" class="notes"></ul>
+          </section>
+
+          <section id="record-error-block" class="sub-block sub-block-warn" aria-labelledby="record-error-title" hidden>
+            <h3 id="record-error-title">记录损坏</h3>
+            <p id="record-error-text" class="meta"></p>
+          </section>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <p>
+        只读契约：仅 GET 接口；只读取 <code>owner.lock</code> 心跳元数据、<code>jobs/&lt;jobId&gt;/job.json</code> 白名单字段与
+        <code>stdout.log</code>/<code>stderr.log</code> 的文件元数据；不读取日志原文、任务正文、requests 索引、桥配置或 DSH home。
+      </p>
+    </footer>
+
+    <script src="/app.js" type="module"></script>
+  </body>
+</html>

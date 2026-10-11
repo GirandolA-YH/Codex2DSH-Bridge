@@ -17,6 +17,17 @@
 - `audit` 模式在一次性快照中运行，源目录与快照前后都做清单哈希比对
 - 输出分页 + 每流 5 MiB 上限；凭据脱敏后才落盘与返回
 
+## 可选：DSH 内的作业监控面板
+
+| 组件 | 安装 / 接入位置 | 是否必需 | 额外依赖 |
+| --- | --- | --- | --- |
+| 主 MCP 桥 | **Codex 侧**：在本机构建服务并配置到 Codex 的 MCP 列表 | 桥接需要 | 无需监控面板或 sidebar |
+| 作业监控面板 | **DSH 内**：DSH profile 的插件目录和右侧栏 | **单独选装** | 必须先安装并启用 `dsh-better-sidebar` |
+
+[optional/dsh-job-monitor](optional/dsh-job-monitor/README.md) 提供 DSH 右侧栏的只读作业监控。**安装主 MCP 桥不会安装此面板，也不会安装 `dsh-better-sidebar`**：根包没有 monitor/sidebar 依赖、workspace 或安装钩子，根构建只包含桥源码，根安装包的 `files` 白名单排除 `optional/`。克隆仓库会取得可选源码，但不等于安装插件。
+
+需要面板时，另行在 DSH 内安装并启用 `dsh-better-sidebar`（当前核对版本 `0.24.1`），再按组件说明手动安装面板。安装、私有路径配置、回退和审查范围见组件说明及 [审查记录](optional/dsh-job-monitor/AUDIT.md)。
+
 ## 快速开始
 
 ```powershell

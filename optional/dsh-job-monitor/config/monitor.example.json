@@ -1,0 +1,33 @@
+{
+  "schema": "dsh-job-monitor/config/v1",
+  "_comment": "复制为 config/monitor.json 后填入你自己的只读路径。所有路径只在宿主进程内读取，浏览器无法传入路径。未列出的工作区永远显示“未配置交付目录”，面板不会猜测目录。",
+  "stateRoot": "/REPLACE/with/bridge/state/root",
+  "acceptanceLedger": "/REPLACE/with/acceptance/ledger.json",
+  "refreshIntervalMs": 5000,
+  "staleHeartbeatMs": 30000,
+  "limits": {
+    "maxJobs": 50,
+    "maxScanEntries": 300,
+    "maxScanDepth": 4,
+    "maxJobJsonBytes": 262144,
+    "maxLedgerBytes": 524288,
+    "maxOwnerBytes": 65536,
+    "maxRecentFiles": 12,
+    "maxReportCandidates": 8,
+    "maxStaticBytes": 524288
+  },
+  "workspaceMap": {
+    "byWorkspaceId": {
+      "REPLACE-workspace-id": "/REPLACE/with/readonly/delivery/dir"
+    },
+    "byJobId": {
+      "REPLACE-job-id": "/REPLACE/with/readonly/delivery/dir"
+    },
+    "workspaceNames": {
+      "REPLACE-workspace-id": "仅展示名，不读取任务正文"
+    }
+  },
+  "names": {
+    "REPLACE-job-id": "仅展示名，不读取任务正文"
+  }
+}

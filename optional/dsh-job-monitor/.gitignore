@@ -1,0 +1,13 @@
+# 真实配置含私有绝对路径，不入库：随仓只发布 config/monitor.example.json
+config/monitor.json
+
+# 运行/测试产物
+node_modules/
+*.log
+*.tmp
+.DS_Store
+Thumbs.db
+
+# 交付文档（本地留存，不随插件发布）
+reports/
+baseline/reports/
