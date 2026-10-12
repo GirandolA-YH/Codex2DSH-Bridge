@@ -1,0 +1,68 @@
+# Copy to C:/DshBridge/dsh.offline.yml; fill the actual model ID and limits.
+# Load via runner.production.extraArgs: ["--patch", "C:/DshBridge/dsh.offline.yml"].
+# Provide LOCAL_OFFLINE_API_KEY through runner.production.env. Use a synthetic
+# placeholder only for a local server without authentication; never publish keys.
+- id: settings
+  disabled: true
+- id: credentials
+  disabled: true
+- id: llm-deepseek
+  disabled: true
+- id: llm-deepseek-account
+  disabled: true
+- id: deepseek-account
+  disabled: true
+- id: session-log-deepseek
+  disabled: true
+- id: plugin-package-inventory-deepseek
+  disabled: true
+- id: config-editor
+  disabled: true
+- id: web-search-deepseek
+  disabled: true
+- id: web-fetch-http
+  disabled: true
+- id: tool-web
+  disabled: true
+- id: session-title-llm
+  disabled: true
+- id: session-telemetry-otel
+  disabled: true
+- id: tool-subagent
+  disabled: true
+- id: tool-subagent-fork
+  disabled: true
+- id: tool-workflow
+  disabled: true
+- id: tool-ralph
+  disabled: true
+- id: agent-default-model
+  config:
+    provider: local-offline
+    model: REPLACE_LOCAL_MODEL_ID
+    reasoningEffort: off
+- id: llm-pi-ai
+  config:
+    providers:
+      local-offline:
+        displayName: Local offline model
+        api: openai-completions
+        baseURL: http://127.0.0.1:8080/v1
+        apiKeyEnv: LOCAL_OFFLINE_API_KEY
+        models:
+          - id: REPLACE_LOCAL_MODEL_ID
+            name: Local offline model
+            contextWindow: 32768
+            maxTokens: 4096
+            input: [text]
+            compat:
+              supportsReasoningEffort: true
+              thinkingFormat: openai
+            reasoningEfforts:
+              off: none
+              low: low
+              medium: medium
+              high: high
+        retryPolicy:
+          mode: normal
+          maxRetries: 0

@@ -1,6 +1,6 @@
 {
-  "note": "脱敏后的 baseline 快照自洽清单（路径改占位、reports/ 不入库）。不声称与 M01 原始交付逐字节一致。",
-  "totalBytes": 218051.0,
+  "note": "Sanitized baseline snapshot integrity list; legacy job IDs in documentation/test examples replaced with fictional IDs. Runtime sampler source unchanged; no claim of byte identity with original M01 delivery.",
+  "totalBytes": 218046,
   "fileCount": 35,
   "schema": "dsh-job-monitor/baseline-snapshot-hashes/v1",
   "files": [
@@ -41,8 +41,8 @@
     },
     {
       "path": "README.md",
-      "sizeBytes": 11423,
-      "sha256": "168953e72b664b3da9351f44d37a584f79a707a0fa30022262750f798a751f1a"
+      "sizeBytes": 11419,
+      "sha256": "001630b9440087886855c6a5acb544d286abe79271ca33e628d35b7d188da8ff"
     },
     {
       "path": "scripts/hash-sources.mjs",
@@ -156,8 +156,8 @@
     },
     {
       "path": "test/paths.test.mjs",
-      "sizeBytes": 4128,
-      "sha256": "f13a27ab37b034b5c077ad86b652528d7a5425762ffb1536356e22257428598a"
+      "sizeBytes": 4127,
+      "sha256": "9b6a6b8fe988a6b88d967fac67f86383d3d37544d61158eaa8dc3a96f68ede83"
     },
     {
       "path": "test/run-all.mjs",

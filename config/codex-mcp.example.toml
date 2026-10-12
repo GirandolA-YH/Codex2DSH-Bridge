@@ -13,11 +13,15 @@ command = 'C:\Program Files\nodejs\node.exe'
 args = [
   'C:\Projects\Codex2DSH-Bridge\dist\src\index.js',
   '--config',
-  'C:\Projects\Codex2DSH-Bridge\config\bridge.config.json',
+  'C:\DshBridge\bridge.config.json',
 ]
 # The bridge answers initialize/tools/list immediately, but a cold start still has
 # to load the job store; 30 s is generous and avoids client-side retries.
 startup_timeout_sec = 30
+
+# Keep the filled production config and state outside the versioned checkout.
+# Preserve C:\DshBridge\bridge.config.json during upgrades; stateDir must match
+# the optional monitor's stateRoot. setup:selftest remains isolated.
 
 # ---------------------------------------------------------------------------
 # Desktop (0.2.0-rc.2) launcher variant — optional, only if you want the bridge

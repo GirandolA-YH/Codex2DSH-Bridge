@@ -55,7 +55,7 @@ node server.mjs --port 0
 
 # 不监听，直接打印 JSON（便于脚本化核对）
 node server.mjs --dump
-node server.mjs --dump-job job-076653ee6ba859ad
+node server.mjs --dump-job job-example00000001
 ```
 
 停止：前台 `Ctrl+C`（也响应 SIGTERM）。停止后进程退出，不遗留监听；演示模式的临时夹具会被删除。
@@ -131,9 +131,9 @@ node server.mjs --dump-job job-076653ee6ba859ad
   "schema": "dsh-monitor/acceptance-ledger/v1",
   "updatedAt": "2026-10-10",
   "jobs": {
-    "job-076653ee6ba859ad": { "status": "pass", "reviewedAt": "2026-10-09" },
-    "job-6afa42a9d671a241": { "status": "fail", "reviewedAt": "2026-10-09" },
-    "job-55a6180f5d8fb32b": { "status": "pending" }
+    "job-example00000001": { "status": "pass", "reviewedAt": "2026-10-09" },
+    "job-example00000002": { "status": "fail", "reviewedAt": "2026-10-09" },
+    "job-example00000003": { "status": "pending" }
   }
 }
 ```

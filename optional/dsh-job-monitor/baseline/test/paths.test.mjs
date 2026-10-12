@@ -7,7 +7,7 @@ import { resolveRoot, safeResolve } from '../src/paths.mjs';
 import { makeTempRoot, rmTree } from './helpers/fixture.mjs';
 
 test('jobId 规则与桥一致', () => {
-  assert.equal(isValidJobId('job-076653ee6ba859ad'), true);
+  assert.equal(isValidJobId('job-example00000001'), true);
   assert.equal(isValidJobId('job-abcdef'), true);
   assert.equal(isValidJobId('job-abcde'), false);
   assert.equal(isValidJobId('job-' + 'a'.repeat(33)), false);

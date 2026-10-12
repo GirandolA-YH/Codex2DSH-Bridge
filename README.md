@@ -44,6 +44,8 @@ npm start                    # 读取刚生成的 config/bridge.config.json，�
 
 接入 Codex：检查 `config/codex-mcp.example.toml` 的路径后，把 `[mcp_servers.dsh_bridge]` 段落**手工**追加到项目的 `config.toml`。本包不会自动修改、启用或重启任何其他程序的配置。
 
+生产配置应保存在部署目录之外，如 `C:/DshBridge/bridge.config.json`；MCP 示例指向此固定文件。先将填写后的生产模板复制到该位置，再接入 MCP。`setup:selftest` 生成的 fake 配置继续用于隔离自测。
+
 ## 历史兼容性记录（2026-10-09 实测）
 
 | 安装 | 版本 | headless 参数面 |
@@ -71,6 +73,7 @@ npm start                    # 读取刚生成的 config/bridge.config.json，�
 | `bridge.config.desktop.json` | 生产样例（桌面 0.2.0-rc.2 launcher） |
 | `bridge.config.selftest.json` | 离线自测模板；由 setup:selftest 生成可运行的本地配置 |
 | `codex-mcp.example.toml` | Codex MCP 配置片段（只供人工检查） |
+| `dsh.offline.example.yml` | 桌面版 headless 本地模型覆盖模板；须填写实际模型 ID、端点与容量 |
 
 关键字段：
 
@@ -80,6 +83,46 @@ npm start                    # 读取刚生成的 config/bridge.config.json，�
 - `runner`：`type = production|fake`；launcher 只能是服务端配置，调用者无法覆盖命令、运行器路径、环境变量、模型或工作目录
 - `limits`：超时范围、每流捕获上限、结果分页上限、内联任务阈值
 - `recovery.killOrphanedChildrenOnStart`：默认 `false`（见下）
+
+### 固定状态根与升级
+
+生产状态放在部署目录之外的固定数据目录。两个生产模板使用 `C:/DshBridge/state` 占位值；替换为本机长期绝对路径，并让面板 stateRoot 指向同一目录。独立验收账本也保持固定位置（如 `C:/DshBridge/acceptance-ledger.json`），由审计方维护，面板只读。升级只更换代码目录，保留生产配置、stateDir、账本与面板配置；新增 workspaceId 时显式更新交付白名单。
+
+迁移前先排空作业并确认旧 owner 已停止。保留 jobs/、requests/，排除 owner.lock / owner.heartbeat.*，由新实例重新取得所有权；同步重定位记录中的 taskFileAccepted、stdoutLog、stderrLog 等状态根内绝对路径。保留原树作为回退证据，拒绝覆盖冲突的 jobId 或请求索引。修改面板配置后重启 DSH，核对 config-status、心跳以及作业列表与磁盘双向一致。
+
+bridge.config.selftest.json、setup:selftest 和其他 fake/offline 配置使用隔离状态根，不受生产面板监控。
+
+### 作业时限
+
+两个生产模板的默认值和上限均为 **1800 秒（30 分钟）**。提交时使用 `timeoutSeconds: 1800`，或省略参数采用默认值；显式提交较短时限仍按该值执行。修改生产配置后重新连接桥，先用 dsh_health 核对实际加载值。已受理作业保留原时限；面板从各自 job.json 读取并显示。代码协议支持的最大范围仍为 3600 秒，生产模板将其收窄为 1800 秒。
+
+### 本地离线模型
+
+使用已核对的桌面版 launcher。先从本机服务的 `/v1/models` 确认模型 ID，将 `config/dsh.offline.example.yml` 填好后复制到固定私有位置。模板仅注册一个 loopback 模型路由，禁用云端模型/搜索/遥测与子代理，自动模型重试为 0；模型 ID、容量及协议兼容字段必须符合实际服务。
+
+在桥配置的 `runner.production` 中合并以下字段，保留原 launcher、profile 和其他设置：
+
+```json
+{
+  "extraArgs": ["--patch", "C:/DshBridge/dsh.offline.yml"],
+  "env": {
+    "ELECTRON_RUN_AS_NODE": "1",
+    "LOCAL_OFFLINE_API_KEY": "local-offline-placeholder"
+  }
+}
+```
+
+占位值仅供不需要真实认证的本机服务。需要认证时使用本机私有配置，真实凭据不提交仓库；覆盖层的 apiKeyEnv 必须与启动环境中的变量名一致。DSH 禁止从项目 .env 加载 DSH_ 前缀变量，此类变量只能由启动环境注入。该用法无需临时替换全局 headless 配置。填写后的配置先用 DSH --dump-config 核对默认模型、路由与云端插件状态，再重新连接桥并通过五工具真实验收；旧 npm CLI 的额外参数能力须另行验证。
+
+受限 Windows 工具环境中，node --test 曾因测试子进程 spawn EPERM 失败。对于本次验证的 node:test 文件，直接运行 `node <test-file.mjs>` 可执行全部已注册测试。任务必须要求测试数大于 0、失败/跳过数明确；同类失败命令最多尝试两次后停止并报告。需要子进程的集成测试应另行核查权限，不能据替代命令通过声称其已修复。
+
+该离线层禁用 credentials 服务后，相关 authorization 插件可能显示等待依赖的启动提示。本机小任务已完成并通过独立验收；其他插件或版本是否依赖该服务仍须单独核查。
+
+### 本机实机核对（2026-10-12）
+
+固定根迁移后，本机通过 Codex 五工具向真实 DSH 派发离线模型小任务，最终修复作业完成：15 项自测与 18 项独立行为检查通过，输出完整且无截断。DSH 实机 API 的配置/心跳正常，列表和详情显示 completed / pass，12 条记录与磁盘零差异。过程中一次启动配置错误和一次零项测试循环均保留为失败/取消记录；结果不依赖退出码单独判定。真实配置、作业 ID、任务、日志和交付文件未发布。
+
+这些是本机部署的有限验收结果；其他机器、DSH/sidebar 版本及完整 UI/辅助技术范围仍须独立验证。
 
 ## 状态机
 
@@ -232,7 +275,7 @@ node test/18-fix-r1-r2-r3-r4.test.mjs   # 本轮 R1–R4 回归，进程内假 R
 
 ## 卸载
 
-本包只影响自身目录：删除实现目录即可。若已手工把 MCP 段落写进 Codex 的 `config.toml`，请自行删除该段落；本包不会自动回滚别人的配置。`stateDir` 下是作业记录、任务副本与脱敏日志，可整体删除。
+卸载代码时删除实现目录即可。若已手工把 MCP 段落写进 Codex 的 `config.toml`，请自行删除该段落；本包不会自动回滚别人的配置。固定数据目录中的作业记录、任务副本、脱敏日志和验收账本独立保留；确认不再需要历史证据后再另行清理。
 
 ## 目录结构
 

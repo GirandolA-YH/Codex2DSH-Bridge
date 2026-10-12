@@ -1,8 +1,8 @@
 {
   "schema": "dsh-job-monitor/config/v1",
-  "_comment": "复制为 config/monitor.json 后填入你自己的只读路径。所有路径只在宿主进程内读取，浏览器无法传入路径。未列出的工作区永远显示“未配置交付目录”，面板不会猜测目录。",
-  "stateRoot": "/REPLACE/with/bridge/state/root",
-  "acceptanceLedger": "/REPLACE/with/acceptance/ledger.json",
+  "_comment": "复制为 config/monitor.json 后填入你自己的只读路径。C:/DshBridge 是与桥生产模板对应的固定数据目录占位值，必须与桥 stateDir 一致，并在升级时保持不变。所有路径只在宿主进程内读取，浏览器无法传入路径。未列出的工作区永远显示“未配置交付目录”，面板不会猜测目录。",
+  "stateRoot": "C:/DshBridge/state",
+  "acceptanceLedger": "C:/DshBridge/acceptance-ledger.json",
   "refreshIntervalMs": 5000,
   "staleHeartbeatMs": 30000,
   "limits": {

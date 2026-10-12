@@ -32,6 +32,7 @@
     "config/bridge.config.example.json",
     "config/bridge.config.selftest.json",
     "config/codex-mcp.example.toml",
+    "config/dsh.offline.example.yml",
     "fixtures/fake-grandchild.mjs",
     "fixtures/fake-runner.mjs",
     "reports/IMPLEMENTATION-REPORT.md",

@@ -7,7 +7,7 @@
     "Nothing here is written to Codex's own config automatically."
   ],
   "server": { "name": "dsh-codex-bridge", "version": "0.1.0", "logLevel": "info" },
-  "stateDir": "C:\\Projects\\Codex2DSH-Bridge\\state",
+  "stateDir": "C:\\DshBridge\\state",
   "taskFileRoots": ["C:\\Projects\\Codex2DSH-Bridge\\pilot\\tasks"],
   "workspaces": {
     "impl-pilot": {
@@ -49,7 +49,7 @@
   "limits": {
     "defaultTimeoutSeconds": 1800,
     "minTimeoutSeconds": 1,
-    "maxTimeoutSeconds": 3600,
+    "maxTimeoutSeconds": 1800,
     "perStreamCaptureCapBytes": 5242880,
     "resultPageMaxBytes": 65536,
     "inlineTaskMaxChars": 16384,
